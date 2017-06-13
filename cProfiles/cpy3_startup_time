@@ -1,5 +1,5 @@
 startup time for py3
-
+Use this for generating cProfile `python3 -m cProfile -s cumtime foo.py`
 python_startup: Mean +- std dev: 17.9 ms +- 1.1 ms
         59046 function calls (57984 primitive calls) in 43.805 seconds
 

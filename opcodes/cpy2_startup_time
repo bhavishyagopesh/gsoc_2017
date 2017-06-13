@@ -1,0 +1,149 @@
+
+Opcodes generated from running the benchmark with py2:
+
+3
+
+        0  LOAD_CONST               0 ('\nBenchmark Python startup.\n')
+        3  STORE_NAME               0 (__doc__)
+
+4
+
+        6  LOAD_CONST               1 (-1)
+        9  LOAD_CONST               2 (None)
+        12 IMPORT_NAME              1 (sys)
+        15 STORE_NAME               1 (sys)
+
+5
+
+         18 LOAD_NAME                1 (sys)
+         21 LOAD_ATTR                2 (path)
+         24 LOAD_ATTR                3 (insert)
+         27 LOAD_CONST               3 (0)
+         30 LOAD_CONST               4 ('/home/bhavishya/python_gsoc_test/test_environment/perf/')
+         33 CALL_FUNCTION            2
+         36 POP_TOP
+
+7
+
+         37 LOAD_CONST               1 (-1)
+         40 LOAD_CONST               2 (None)
+         43 IMPORT_NAME              4 (perf)
+         46 STORE_NAME               4 (perf)
+
+8
+
+         49 LOAD_CONST               1 (-1)
+         52 LOAD_CONST               2 (None)
+         55 IMPORT_NAME              5 (cProfile)
+         58 STORE_NAME               5 (cProfile)
+
+10
+
+         61 LOAD_CONST               5 (<code object add_cmdline_args at 0x7f2068148bb0, file "bm_python_startup.py", line 10>)
+         64 MAKE_FUNCTION            0
+         67 STORE_NAME               6 (add_cmdline_args)
+
+15
+
+         70 LOAD_NAME                7 (__name__)
+         73 LOAD_CONST               6 ('__main__')
+         76 COMPARE_OP               2 (==)
+         79 POP_JUMP_IF_FALSE      250
+
+16
+
+         82 LOAD_NAME                4 (perf)
+         85 LOAD_ATTR                8 (Runner)
+         88 LOAD_CONST               7 ('values')
+         91 LOAD_CONST               8 (10)
+         94 LOAD_CONST               9 ('add_cmdline_args')
+         97 LOAD_NAME                6 (add_cmdline_args)
+        100 CALL_FUNCTION          512
+        103 STORE_NAME               9 (runner)
+
+17
+
+        106 LOAD_NAME                9 (runner)
+        109 LOAD_ATTR               10 (argparser)
+        112 LOAD_ATTR               11 (add_argument)
+        115 LOAD_CONST              10 ('--no-site')
+        118 LOAD_CONST              11 ('action')
+        121 LOAD_CONST              12 ('store_true')
+        124 CALL_FUNCTION          257
+        127 POP_TOP
+
+19
+
+        128 LOAD_CONST              13 ('Performance of the Python startup')
+        131 LOAD_NAME                9 (runner)
+        134 LOAD_ATTR               12 (metadata)
+        137 LOAD_CONST              14 ('description')
+        140 STORE_SUBSCR
+
+20
+
+        141 LOAD_NAME                9 (runner)
+        144 LOAD_ATTR               13 (parse_args)
+        147 CALL_FUNCTION            0
+        150 STORE_NAME              14 (args)
+
+21
+
+        153 LOAD_CONST              15 ('python_startup')
+        156 STORE_NAME              15 (name)
+
+22
+
+        159 LOAD_NAME               14 (args)
+        162 LOAD_ATTR               16 (no_site)
+        165 POP_JUMP_IF_FALSE      181
+
+23
+
+        168 LOAD_NAME               15 (name)
+        171 LOAD_CONST              16 ('_no_site')
+        174 INPLACE_ADD
+        175 STORE_NAME              15 (name)
+    =>  178 JUMP_FORWARD             0 (to 181)
+
+25
+
+    >>  181 LOAD_NAME                1 (sys)
+        184 LOAD_ATTR               17 (executable)
+        187 BUILD_LIST               1
+        190 STORE_NAME              18 (command)
+
+26
+
+        193 LOAD_NAME               14 (args)
+        196 LOAD_ATTR               16 (no_site)
+        199 POP_JUMP_IF_FALSE      218
+
+27
+
+        202 LOAD_NAME               18 (command)
+        205 LOAD_ATTR               19 (append)
+        208 LOAD_CONST              17 ('-S')
+        211 CALL_FUNCTION            1
+        214 POP_TOP
+=>      215 JUMP_FORWARD             0 (to 218)
+
+28
+
+    >>  218 LOAD_NAME               18 (command)
+        221 LOAD_ATTR               20 (extend)
+        224 LOAD_CONST              20 (('-c', 'pass'))
+        227 CALL_FUNCTION            1
+        230 POP_TOP
+
+30
+
+        231 LOAD_NAME                9 (runner)
+        234 LOAD_ATTR               21 (bench_command)
+        237 LOAD_NAME               15 (name)
+        240 LOAD_NAME               18 (command)
+        243 CALL_FUNCTION            2
+        246 POP_TOP
+        247 JUMP_FORWARD             0 (to 250)
+    >>  250 LOAD_CONST               2 (None)
+        253 RETURN_VALUE

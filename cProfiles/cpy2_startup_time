@@ -1,5 +1,5 @@
 startup for py2
-
+Use this for generating cProfile `python2 -m cProfile -s cumtime foo.py`
 python_startup: Mean +- std dev: 10.5 ms +- 1.1 ms
          40940 function calls (40204 primitive calls) in 43.230 seconds
 
