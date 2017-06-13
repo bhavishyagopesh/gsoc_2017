@@ -1,19 +1,4 @@
 
-/* Use this file as a template to start implementing a module that
-   also declares object types. All occurrences of 'Xxo' should be changed
-   to something reasonable for your objects. After that, all other
-   occurrences of 'xx' should be changed to something reasonable for your
-   module. If your module is named foo your sourcefile should be named
-   foomodule.c.
-
-   You will probably want to delete all references to 'x_attr' and add
-   your own types of attributes instead.  Maybe you want to name your
-   local variables other than 'self'.  If your object type is needed in
-   other files, you'll have to create a file "foobarobject.h"; see
-   floatobject.h for an example. */
-
-/* Xxo objects */
-
 #include "Python.h"
 #include "clinic/_weakref.c.h"
 // static PyObject *ErrorObject;
@@ -41,43 +26,6 @@ WeakSet_init(PyObject *arg)
     self->_iterating = NULL;
     return self;
 }
-
-/* Xxo methods */
-
-// static void
-// Xxo_dealloc(XxoObject *self)
-// {
-//     Py_XDECREF(self->x_attr);
-//     PyObject_Del(self);
-// }
-
-// static PyObject *
-// Xxo_demo(XxoObject *self, PyObject *args)
-// {
-//     if (!PyArg_ParseTuple(args, ":demo"))
-//         return NULL;
-//     Py_INCREF(Py_None);
-//     return Py_None;
-// }
-
-// static PyMethodDef Xxo_methods[] = {
-//     {"demo",            (PyCFunction)Xxo_demo,  METH_VARARGS,
-//         PyDoc_STR("demo() -> None")},
-//     {NULL,              NULL}           /* sentinel */
-// };
-
-// static PyObject *
-// Xxo_getattro(XxoObject *self, PyObject *name)
-// {
-//     if (self->x_attr != NULL) {
-//         PyObject *v = PyDict_GetItem(self->x_attr, name);
-//         if (v != NULL) {
-//             Py_INCREF(v);
-//             return v;
-//         }
-//     }
-//     return PyObject_GenericGetAttr((PyObject *)self, name);
-// }
 
 static int
 WeakSet_setattr(WeakSet *self, PyObject *v)
