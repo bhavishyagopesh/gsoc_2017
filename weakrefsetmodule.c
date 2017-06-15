@@ -9,6 +9,56 @@ typedef struct {
 
 }
 
+static PyTypeObject _IterationGuard;  //Lacks inheritance
+
+#define _IterationGuard_Check(v)      (Py_TYPE(v) == &_IterationGuard_Type)
+
+static PyObject*
+_IterationGuard_new(PyTypeObject *type,PyObject *args)
+{
+  _IterationGuard *self,*weakcontainer;
+  self = PyObject_New(_IterationGuard,&_IterationGuard_Type);
+  if (self == NULL)
+      return NULL;
+  self->weakcontainer = NULL;
+  return self;
+}
+
+static int
+_IterationGuard_setattr(_IterationGuard *self,PyObject *weakcontainer)
+{
+  self->weakcontainer = PyWeakref_NewRef(weakcontainer);
+}
+
+static PyObject *
+_IterationGuard_enter(_IterationGuard *self)
+{
+  PYObject *w = *(self->weakcontainer);
+  if (w!=Py_None)
+  {
+    PySet_Add(w->_iterating,self);
+  }
+  return self;
+}
+
+static PyObject *                    //Doubtful of parameters e,t,b
+_IterationGuard_exit(PyObject *self)
+{
+  w = *(self->weakcontainer);
+  PyObject *s = PySet_New();
+  if(w!=Py_None)
+  {
+    s = w->_iterating ;
+    WeakSet_remove(self,s);
+
+    if(!s)
+    {
+      *(w->_commit_removals);
+    }
+  }
+}
+
+
 typedef struct {
     PyObject_HEAD
     PyObject            *data;      //set  /* Attributes dictionary */
@@ -22,7 +72,7 @@ static PyTypeObject WeakSet;
 #define WeakSet_Check(v)      (Py_TYPE(v) == &WeakSet_Type)
 
 static PyObject *
-WeakSet_new(PyObject *arg)
+WeakSet_new(PyObject *args)
 {
     WeakSet *self
     self = PyObject_New(WeakSet, &WeakSet_Type);
@@ -34,8 +84,6 @@ WeakSet_new(PyObject *arg)
     self->_remove = NULL;
     return self;
 }
-
-
 
 static int
 WeakSet_setattr(WeakSet *self, PyObject *v)
@@ -81,7 +129,7 @@ WeakSet_setattr(WeakSet *self, PyObject *v)
 
 static void (*_remove)(PyObject *item,Weakset *self)
 {
-  self = *PyWeakref_NewRef(self);
+  self = *(self);
 
   if(self!=NULL)
     {
@@ -105,6 +153,8 @@ WeakSet_commit_removals(Weakset *self)
     discard()//TO Do implement discard
   }
 }
+
+
 
 static PyObject *
 Weakset_len(Weakset *self, PyObject *args)
@@ -242,10 +292,10 @@ WeakSet_difference_update(WeakSet *self, PyObject *args)
 }
 
 static PyObject *
-WeakSet___isub__(WeakSet *self, PyObject *args)
+WeakSet_isub_(WeakSet *self, PyObject *args)
 {
   WeakSet *other;
-  if (!PyArg_ParseTuple(args, ":difference_update",other))
+  if (!PyArg_ParseTuple(args, ":__isub__",other))
     return NULL;
   if(_pending_removals!=NULL)
     WeakSet_commit_removals(self);
@@ -268,7 +318,9 @@ static PyObject *
 WeakSet_intersection(PyObject *self,PyObject *other)
 {
   WeakSet *l;
-  
+  if (!PyArg_ParseTuple(args, ":intersection",l))
+    return NULL;
+  return PyNumber_And(self->data, l->data);
 }
 
 
