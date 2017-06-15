@@ -1,13 +1,20 @@
 
 #include "Python.h"
 #include "clinic/_weakref.c.h"
-// static PyObject *ErrorObject;
+static PyObject *WeakSet_error = NULL; //global error
+
+typedef struct {
+  PyObject_HEAD
+  PyObject              *weakcontainer  //Weak-reference
+
+}
 
 typedef struct {
     PyObject_HEAD
     PyObject            *data;      //set  /* Attributes dictionary */
     PyObject            *_pending_removals //list
     PyObject            *_iterating  //set
+    PyObject            *_remove     //function
 } WeakSet;
 
 static PyTypeObject WeakSet;
@@ -15,7 +22,7 @@ static PyTypeObject WeakSet;
 #define WeakSet_Check(v)      (Py_TYPE(v) == &WeakSet_Type)
 
 static PyObject *
-WeakSet_init(PyObject *arg)
+WeakSet_new(PyObject *arg)
 {
     WeakSet *self
     self = PyObject_New(WeakSet, &WeakSet_Type);
@@ -24,8 +31,11 @@ WeakSet_init(PyObject *arg)
     self->data = NULL;
     self->_pending_removals = NULL;
     self->_iterating = NULL;
+    self->_remove = NULL;
     return self;
 }
+
+
 
 static int
 WeakSet_setattr(WeakSet *self, PyObject *v)
@@ -36,7 +46,7 @@ WeakSet_setattr(WeakSet *self, PyObject *v)
             return -1;
     }
     if (v == NULL) {
-        int rv = PySet_Contains(self->x_attr, v);
+        int rv = PySet_Contains(self->data, v);
         if (rv < 0)
             PyErr_SetString(PyExc_AttributeError,
                 "delete non-existing data attribute");
@@ -57,6 +67,43 @@ WeakSet_setattr(WeakSet *self, PyObject *v)
             return -1;
     }
 
+    if (self->_remove == NULL){
+      self->_remove = _remove;
+      if (self->_remove == NULL)
+        return -1;
+    }
+
+    if(self->data != NULL){
+      Weakset_update(self->data);
+    }
+
+}
+
+static void (*_remove)(PyObject *item,Weakset *self)
+{
+  self = *PyWeakref_NewRef(self);
+
+  if(self!=NULL)
+    {
+      if (self->_iterating != NULL)
+        PyList_Append(self->_pending_removals, item);
+      else
+        PySet_Discard(self->data, item);
+    }
+}
+
+static PyObject *
+WeakSet_commit_removals(Weakset *self)
+{
+  PyListObject *l;
+  l = self->_pending_removals;
+  PyObject *discard;
+  discard = WeakSer_discard;
+
+  while (l)
+  {
+    discard()//TO Do implement discard
+  }
 }
 
 static PyObject *
@@ -72,26 +119,24 @@ WeakSet_contains(WeakSet *self, PyObject *args)
 {
   int wrefcount;
   PyObject *wr,*item;
-  if (!PyArg_ParseTuple(args, ":contains",&item))
+  if (!PyArg_ParseTuple(args, ":contains",item))
       return NULL;
   wr = PyWeakref_NewRef(item);
   return PySet_Contains(self->data,wr);
 }
 
-//Implement __reduce__method
-// static PyObject*
-// WeakSet_reduce(WeakSet *self)
-// {
-//   PyTupleObject *reduce_tuple;
-//   PyTuple_SET_ITEM(reduce_tuple, 0, WeakSet);
-//   PyTuple_SET_ITEM(reduce_tuple, 1, WeakSet);
-// }
+static PyObject*
+WeakSet_reduce(WeakSet *self)
+{
+  char *dict =
+  return PyTuple_Pack(3,Py_Type(self),PyTuple_Pack(1,self),PyModule_GetDict(self)) //Doubtful
+}
 
 static PyObject *
 WeakSet_add(WeakSet *self, PyObject *args)
 {
   PyObject *item;
-  if (!PyArg_ParseTuple(args, ":add",&item))
+  if (!PyArg_ParseTuple(args, ":add",item))
       return NULL;
   if(_pending_removals!=NULL)
     WeakSet_commit_removals(self); /*To------------------------Do*/
@@ -130,34 +175,47 @@ void
 WeakSet_remove(WeakSet *self, PyObject *args)
 {
   PySetObject *item;
-  if (!PyArg_ParseTuple(args, ":remove",&item))
+  if (!PyArg_ParseTuple(args, ":remove",item))
+      return NULL;
+  if(_pending_removals!=NULL)
+    WeakSet_commit_removals(self);
+  if(PySet_Contains(self->data,PyWeakref_NewRef(item) ))
+  PySet_Discard(self->data, PyWeakref_NewRef(item));
+}
+
+void
+WeakSet_discard(WeakSet *self, PyObject *args)
+{
+  PySetObject *item;
+  if (!PyArg_ParseTuple(args, ":discard",item))
       return NULL;
   if(_pending_removals!=NULL)
     WeakSet_commit_removals(self);
   PySet_Discard(self->data, PyWeakref_NewRef(item));
 }
 
-/*----------------------SIMILARLY DISCARD ALSO------------------------------*/
 
-/*Trouble implementing update*/
-// static PyObject *
-// WeakSet_update(WeakSet *self, PyObject *args)
-// {
-//   WeakSet **other,*element;
-//   if (!PyArg_ParseTuple(args, ":update",&other))
-//       return NULL;
-//   if(_pending_removals!=NULL)
-//       WeakSet_commit_removals(self);
-//
-//
-//
-// }
+static PyObject *
+WeakSet_update(WeakSet *self, PyObject *args)
+{
+  WeakSet *other;
+  if (!PyArg_ParseTuple(args, ":update",other))
+      return NULL;
+  if(_pending_removals!=NULL)
+      WeakSet_commit_removals(self);
+  int l = Py_Size(other);
+  while(l)
+  {
+    WeakSet_add(self,*(other+l-1));  //very-very hackish
+    l--;
+  }
+}
 
 static PyObject *
 WeakSet__ior__(WeakSet *self, PyObject *args)
 {
   WeakSet *other;
-  if (!PyArg_ParseTuple(args, ":__ior__",&other))
+  if (!PyArg_ParseTuple(args, ":__ior__",other))
     return NULL;
   WeakSet_update(self,other);
   return self;
@@ -167,7 +225,7 @@ static PyObject *
 WeakSet_difference(WeakSet *self, PyObject *args)
 {
   WeakSet *newset,*other;
-  if (!PyArg_ParseTuple(args, ":difference",&other))
+  if (!PyArg_ParseTuple(args, ":difference",other))
     return NULL;
   newest = WeakSet_copy(self);
   WeakSet_difference_update(newest,other);
@@ -178,7 +236,7 @@ static PyObject *
 WeakSet_difference_update(WeakSet *self, PyObject *args)
 {
   WeakSet *other;
-  if (!PyArg_ParseTuple(args, ":difference_update",&other))
+  if (!PyArg_ParseTuple(args, ":difference_update",other))
     return NULL;
   WeakSet___isub__(other);
 }
@@ -187,18 +245,31 @@ static PyObject *
 WeakSet___isub__(WeakSet *self, PyObject *args)
 {
   WeakSet *other;
-  if (!PyArg_ParseTuple(args, ":difference_update",&other))
+  if (!PyArg_ParseTuple(args, ":difference_update",other))
     return NULL;
   if(_pending_removals!=NULL)
     WeakSet_commit_removals(self);
   if(self==other) //check how to Implement "is"
     PySet_Clear(self->data);
   else
-    /*Implement loop*/
+    {
+      int l = Py_Size(other);
+      while(l)
+      {
+        WeakSet_difference_update(PyWeakref_NewRef(*(other+l-1))) //again hack
+        l--;
+      }
+    }
 
   return self;
 }
 
+static PyObject *
+WeakSet_intersection(PyObject *self,PyObject *other)
+{
+  WeakSet *l;
+  
+}
 
 
 
