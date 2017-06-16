@@ -1,4 +1,4 @@
-
+PyNumber_And
 #include "Python.h"
 #include "clinic/_weakref.c.h"
 static PyObject *WeakSet_error = NULL; //global error
@@ -184,7 +184,7 @@ while (item = PyIter_Next(itemref)) {
     Py_DECREF(item);
 }
 
-Py_DECREF(iterator);
+Py_DECREF(itemref);
 
 if (PyErr_Occurred()) {
   return NULL;
@@ -205,7 +205,7 @@ WeakSet_contains(WeakSet *self, PyObject *args)
 {
   int wrefcount;
   PyObject *wr,*item;
-  if (!PyArg_ParseTuple(args, ":contains",item))
+  if (!PyArg_ParseTuple(args, ":contains",&item))
       return NULL;
   wr = PyWeakref_NewRef(item);
   return PySet_Contains(self->data,wr);
@@ -222,7 +222,7 @@ static PyObject *
 WeakSet_add(WeakSet *self, PyObject *args)
 {
   PyObject *item;
-  if (!PyArg_ParseTuple(args, ":add",item))
+  if (!PyArg_ParseTuple(args, ":add",&item))
       return NULL;
   if(_pending_removals!=NULL)
     WeakSet_commit_removals(self); /*To------------------------Do*/
@@ -261,7 +261,7 @@ void
 WeakSet_remove(WeakSet *self, PyObject *args)
 {
   PySetObject *item;
-  if (!PyArg_ParseTuple(args, ":remove",item))
+  if (!PyArg_ParseTuple(args, ":remove",&item))
       return NULL;
   if(_pending_removals!=NULL)
     WeakSet_commit_removals(self);
@@ -273,7 +273,7 @@ void
 WeakSet_discard(WeakSet *self, PyObject *args)
 {
   PySetObject *item;
-  if (!PyArg_ParseTuple(args, ":discard",item))
+  if (!PyArg_ParseTuple(args, ":discard",&item))
       return NULL;
   if(_pending_removals!=NULL)
     WeakSet_commit_removals(self);
@@ -285,7 +285,7 @@ static PyObject *
 WeakSet_update(WeakSet *self, PyObject *args)
 {
   WeakSet *other;
-  if (!PyArg_ParseTuple(args, ":update",other))
+  if (!PyArg_ParseTuple(args, ":update",&other))
       return NULL;
   if(_pending_removals!=NULL)
       WeakSet_commit_removals(self);
@@ -301,7 +301,7 @@ static PyObject *
 WeakSet_ior(WeakSet *self, PyObject *args)
 {
   WeakSet *other;
-  if (!PyArg_ParseTuple(args, ":__ior__",other))
+  if (!PyArg_ParseTuple(args, ":__ior__",&other))
     return NULL;
   WeakSet_update(self,other);
   return self;
@@ -311,7 +311,7 @@ static PyObject *
 WeakSet_difference(WeakSet *self, PyObject *args)
 {
   WeakSet *newset,*other;
-  if (!PyArg_ParseTuple(args, ":difference",other))
+  if (!PyArg_ParseTuple(args, ":difference",&other))
     return NULL;
   newest = WeakSet_copy(self);
   WeakSet_difference_update(newest,other);
@@ -322,7 +322,7 @@ static PyObject *
 WeakSet_difference_update(WeakSet *self, PyObject *args)
 {
   WeakSet *other;
-  if (!PyArg_ParseTuple(args, ":difference_update",other))
+  if (!PyArg_ParseTuple(args, ":difference_update",&other))
     return NULL;
   WeakSet___isub__(other);
 }
@@ -331,7 +331,7 @@ static PyObject *
 WeakSet_isub_(WeakSet *self, PyObject *args)
 {
   WeakSet *other;
-  if (!PyArg_ParseTuple(args, ":__isub__",other))
+  if (!PyArg_ParseTuple(args, ":__isub__",&other))
     return NULL;
   if(_pending_removals!=NULL)
     WeakSet_commit_removals(self);
@@ -354,12 +354,286 @@ static PyObject *
 WeakSet_intersection(PyObject *self,PyObject *other)
 {
   WeakSet *l;
-  if (!PyArg_ParseTuple(args, ":intersection",l))
+  if (!PyArg_ParseTuple(args, ":intersection",&l))
     return NULL;
-  return PyNumber_And(self->data, l->data);
+    self->data = PyNumber_And(self->data, l->data);
+    return self;
 }
 
+static PyObject *
+WeakSet_intersection_update(PyObject *self,PyObject *other)
+{
+  WeakSet *l;
+  if (!PyArg_ParseTuple(args, ":intersection_update",&l))
+    return NULL;
+  WeakSet_iand(self,l);
+}
 
+static PyObject *
+WeakSet_iand(PyObject *self,PyObject *other)
+{
+  if(self->_pending_removals)
+  {
+    *(self->_commit_removals);
+  }
+
+  PyObject *itemref = PyObject_GetIter(other);
+  PyObject *item ;
+
+if (itemref == NULL) {
+    return NULL;
+}
+
+while (item = PyIter_Next(itemref)) {
+
+    if(item)
+    {
+      PyObject *it1 = PyObject_GetIter(PyWeakref_NewRef(item));
+      while(it2 = PyIter_Next(it1))
+      {
+        PyNumber_And(self->data, it2);
+        Py_DECREF(it2);
+      }
+      Py_DECREF(it1);
+    }
+
+    Py_DECREF(item);
+}
+
+Py_DECREF(itemref);
+
+if (PyErr_Occurred()) {
+  return NULL;
+}
+
+else
+{
+  return self;
+}
+
+}
+
+static PyObject *
+WeakSet_issubset(PyObject *self,PyObject *other)
+{
+  PySet_Type *l;
+  PyObject *itemref = PyObject_GetIter(other);
+  PyObject *item ;
+
+if (itemref == NULL) {
+    return NULL;
+}
+
+while (item = PyIter_Next(itemref)) {
+
+    if(item)
+    {
+      PySet_Add(l,PyWeakref_NewRef(item));
+    }
+
+    Py_DECREF(item);
+}
+
+Py_DECREF(itemref);
+
+if (PyErr_Occurred()) {
+  return NULL;
+}
+else
+return (PyNumber_And(self->data, l)==*l);
+
+}
+
+static PyObject *
+WeakSet_lt(PyObject *self,PyObject *other)
+{
+  PyObject *itemref = PyObject_GetIter(other);
+  PyObject *item ;
+  PySet_Type *l;
+
+  if (itemref == NULL) {
+      return NULL;
+  }
+
+  while (item = PyIter_Next(itemref)) {
+
+    PySet_Add(l,item);
+    Py_DECREF(item);
+  }
+
+  Py_DECREF(itemref);
+
+  if (PyErr_Occurred()) {
+    return NULL;
+  }
+
+  else
+  {
+    return (PySet_Size(self->data)<PySet_Size(l));
+  }
+}
+
+static PyObject *
+WeakSet_issuperset(PyObject *self,PyObject *other)
+{
+  PySet_Type *l;
+  PyObject *itemref = PyObject_GetIter(other);
+  PyObject *item ;
+
+if (itemref == NULL) {
+    return NULL;
+}
+
+while (item = PyIter_Next(itemref)) {
+
+    if(item)
+    {
+      PySet_Add(l,PyWeakref_NewRef(item));
+    }
+
+    Py_DECREF(item);
+}
+
+Py_DECREF(itemref);
+
+if (PyErr_Occurred()) {
+  return NULL;
+}
+else
+return (PyNumber_Add(self->data, l)==*self->data);
+
+}
+
+static PyObject *
+WeakSet_gt(PyObject *self,PyObject *other)
+{
+  PyObject *itemref = PyObject_GetIter(other);
+  PyObject *item ;
+  PySet_Type *l;
+
+  if (itemref == NULL) {
+      return NULL;
+  }
+
+  while (item = PyIter_Next(itemref)) {
+
+    PySet_Add(l,item);
+    Py_DECREF(item);
+  }
+
+  Py_DECREF(itemref);
+
+  if (PyErr_Occurred()) {
+    return NULL;
+  }
+
+  else
+  {
+    return (PySet_Size(self->data)>PySet_Size(l));
+  }
+}
+
+static PyObject *
+WeakSet_eq(PyObject *self,PyObject *other)
+{
+
+  if(!WeakSet_Check(other))
+  {
+    Py_RETURN_NOTIMPLEMENTED;
+  }
+
+
+  PyObject *itemref = PyObject_GetIter(other);
+  PyObject *item ;
+  PySet_Type *l;
+
+  if (itemref == NULL) {
+      return NULL;
+  }
+
+  while (item = PyIter_Next(itemref)) {
+
+    PySet_Add(l,item);
+    Py_DECREF(item);
+  }
+
+  Py_DECREF(itemref);
+
+  if (PyErr_Occurred()) {
+    return NULL;
+  }
+
+  else
+  {
+    return (PySet_Size(self->data)==PySet_Size(l));
+  }
+}
+
+static PyObject *
+WeakSet_symmetric_difference(PyObject *self,PyObject *other)
+{
+  WeakSet *newset;
+  newset = WeakSet_copy(self);
+  newset = WeakSet_symmetric_difference_update(newset,other);
+  return newset;
+}
+
+static PyObject *
+WeakSet_symmetric_difference_update(PyObject *self,PyObject *other)
+{
+  WeakSet_ixor(self,other);
+}
+
+staic PyObject *
+WeakSet_ixor(PyObject *self,PyObject *other)
+{
+  if(self->_pending_removals)
+    *(self->_commit_removals);
+  if(self==other)
+  {
+    PySet_Clear(self->data);
+  }
+  else
+  {
+    PyObject *itemref = PyObject_GetIter(other);
+    PyObject *item ;
+
+    if (itemref == NULL) {
+        return NULL;
+    }
+
+    while (item = PyIter_Next(itemref)) {
+
+      PyNumber_Subtract(self->data,PyWeakref_NewRef(item,self->_remove));
+      Py_DECREF(item);
+    }
+
+    Py_DECREF(itemref);
+
+    if (PyErr_Occurred()) {
+      return NULL;
+    }
+
+    else
+    return self;
+  }
+}
+
+static PyObject *
+WeakSet_union(PyObject *self,PyObject *other)
+{
+  WeakSet *l;
+  if (!PyArg_ParseTuple(args, ":union",&l))
+    return NULL;
+  self->data = PyNumber_Or(self->data, l->data);
+  return self;
+}
+
+static PyObject *
+WeakSet_isdisjoint(PyObject *self,PyObject *other)
+{
+  return(WeakSet_len(WeakSet_intersection(self,other))==0);
+}
 
 static PyTypeObject Xxo_Type = {
     /* The ob_type field must be initialized in the module init function
