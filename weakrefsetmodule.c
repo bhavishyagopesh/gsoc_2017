@@ -635,18 +635,18 @@ WeakSet_isdisjoint(PyObject *self,PyObject *other)
   return(WeakSet_len(WeakSet_intersection(self,other))==0);
 }
 
-static PyTypeObject Xxo_Type = {
+static PyTypeObject WeakSet = {
     /* The ob_type field must be initialized in the module init function
      * to be portable to Windows without using C++. */
     PyVarObject_HEAD_INIT(NULL, 0)
-    "xxmodule.Xxo",             /*tp_name*/
-    sizeof(XxoObject),          /*tp_basicsize*/
+    "weakrefset",             /*tp_name*/
+    sizeof(WeakSet),          /*tp_basicsize*/
     0,                          /*tp_itemsize*/
     /* methods */
     (destructor)Xxo_dealloc,    /*tp_dealloc*/
     0,                          /*tp_print*/
     (getattrfunc)0,             /*tp_getattr*/
-    (setattrfunc)Xxo_setattr,   /*tp_setattr*/
+    (setattrfunc)WeakSet_setattr,   /*tp_setattr*/
     0,                          /*tp_reserved*/
     0,                          /*tp_repr*/
     0,                          /*tp_as_number*/
@@ -655,7 +655,7 @@ static PyTypeObject Xxo_Type = {
     0,                          /*tp_hash*/
     0,                          /*tp_call*/
     0,                          /*tp_str*/
-    (getattrofunc)Xxo_getattro, /*tp_getattro*/
+    (getattrofunc)WeakSet_getattro, /*tp_getattro*/
     0,                          /*tp_setattro*/
     0,                          /*tp_as_buffer*/
     Py_TPFLAGS_DEFAULT,         /*tp_flags*/
@@ -666,7 +666,7 @@ static PyTypeObject Xxo_Type = {
     0,                          /*tp_weaklistoffset*/
     0,                          /*tp_iter*/
     0,                          /*tp_iternext*/
-    Xxo_methods,                /*tp_methods*/
+    WeakSet_methods,                /*tp_methods*/
     0,                          /*tp_members*/
     0,                          /*tp_getset*/
     0,                          /*tp_base*/
@@ -676,130 +676,10 @@ static PyTypeObject Xxo_Type = {
     0,                          /*tp_dictoffset*/
     0,                          /*tp_init*/
     0,                          /*tp_alloc*/
-    0,                          /*tp_new*/
+    WeakSet_new,                          /*tp_new*/
     0,                          /*tp_free*/
     0,                          /*tp_is_gc*/
 };
-/* --------------------------------------------------------------------- */
-
-/* Function of two integers returning integer */
-
-PyDoc_STRVAR(xx_foo_doc,
-"foo(i,j)\n\
-\n\
-Return the sum of i and j.");
-
-static PyObject *
-xx_foo(PyObject *self, PyObject *args)
-{
-    long i, j;
-    long res;
-    if (!PyArg_ParseTuple(args, "ll:foo", &i, &j))
-        return NULL;
-    res = i+j; /* XXX Do something here */
-    return PyLong_FromLong(res);
-}
-
-
-/* Function of no arguments returning new Xxo object */
-
-static PyObject *
-xx_new(PyObject *self, PyObject *args)
-{
-    XxoObject *rv;
-
-    if (!PyArg_ParseTuple(args, ":new"))
-        return NULL;
-    rv = newXxoObject(args);
-    if (rv == NULL)
-        return NULL;
-    return (PyObject *)rv;
-}
-
-/* Example with subtle bug from extensions manual ("Thin Ice"). */
-
-static PyObject *
-xx_bug(PyObject *self, PyObject *args)
-{
-    PyObject *list, *item;
-
-    if (!PyArg_ParseTuple(args, "O:bug", &list))
-        return NULL;
-
-    item = PyList_GetItem(list, 0);
-    /* Py_INCREF(item); */
-    PyList_SetItem(list, 1, PyLong_FromLong(0L));
-    PyObject_Print(item, stdout, 0);
-    printf("\n");
-    /* Py_DECREF(item); */
-
-    Py_INCREF(Py_None);
-    return Py_None;
-}
-
-/* Test bad format character */
-
-static PyObject *
-xx_roj(PyObject *self, PyObject *args)
-{
-    PyObject *a;
-    long b;
-    if (!PyArg_ParseTuple(args, "O#:roj", &a, &b))
-        return NULL;
-    Py_INCREF(Py_None);
-    return Py_None;
-}
-
-
-/* ---------- */
-
-static PyTypeObject Str_Type = {
-    /* The ob_type field must be initialized in the module init function
-     * to be portable to Windows without using C++. */
-    PyVarObject_HEAD_INIT(NULL, 0)
-    "xxmodule.Str",             /*tp_name*/
-    0,                          /*tp_basicsize*/
-    0,                          /*tp_itemsize*/
-    /* methods */
-    0,                          /*tp_dealloc*/
-    0,                          /*tp_print*/
-    0,                          /*tp_getattr*/
-    0,                          /*tp_setattr*/
-    0,                          /*tp_reserved*/
-    0,                          /*tp_repr*/
-    0,                          /*tp_as_number*/
-    0,                          /*tp_as_sequence*/
-    0,                          /*tp_as_mapping*/
-    0,                          /*tp_hash*/
-    0,                          /*tp_call*/
-    0,                          /*tp_str*/
-    0,                          /*tp_getattro*/
-    0,                          /*tp_setattro*/
-    0,                          /*tp_as_buffer*/
-    Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE, /*tp_flags*/
-    0,                          /*tp_doc*/
-    0,                          /*tp_traverse*/
-    0,                          /*tp_clear*/
-    0,                          /*tp_richcompare*/
-    0,                          /*tp_weaklistoffset*/
-    0,                          /*tp_iter*/
-    0,                          /*tp_iternext*/
-    0,                          /*tp_methods*/
-    0,                          /*tp_members*/
-    0,                          /*tp_getset*/
-    0, /* see PyInit_xx */      /*tp_base*/
-    0,                          /*tp_dict*/
-    0,                          /*tp_descr_get*/
-    0,                          /*tp_descr_set*/
-    0,                          /*tp_dictoffset*/
-    0,                          /*tp_init*/
-    0,                          /*tp_alloc*/
-    0,                          /*tp_new*/
-    0,                          /*tp_free*/
-    0,                          /*tp_is_gc*/
-};
-
-/* ---------- */
 
 static PyObject *
 null_richcompare(PyObject *self, PyObject *other, int op)
@@ -860,15 +740,65 @@ static PyTypeObject Null_Type = {
 
 /* List of functions defined in the module */
 
-static PyMethodDef xx_methods[] = {
-    {"roj",             xx_roj,         METH_VARARGS,
-        PyDoc_STR("roj(a,b) -> None")},
-    {"foo",             xx_foo,         METH_VARARGS,
-        xx_foo_doc},
-    {"new",             xx_new,         METH_VARARGS,
-        PyDoc_STR("new() -> new Xx object")},
-    {"bug",             xx_bug,         METH_VARARGS,
-        PyDoc_STR("bug(o) -> None")},
+static PyMethodDef WeakSet_methods[] = {
+    {"_commit_removals",    WeakSet_commit_removals,         METH_VARARGS,
+        PyDoc_STR("_commit_removals(a,b) -> None")},
+    {"__iter__",          WeakSet_iter,         METH_VARARGS,
+        PyDoc_STR("__iter__(a,b) -> iterator")},
+    {"__len__",            WeakSet_new,         METH_VARARGS,
+        PyDoc_STR("__len__ -> length")},
+    {"__contains__",           WeakSet_contains,         METH_VARARGS,
+        PyDoc_STR("__contains__ -> boolean")},
+    {"__reduce__",           WeakSet_reduce,         METH_VARARGS,
+        PyDoc_STR("__reduce__ -> None")},
+    {"add",           WeakSet_add,         METH_VARARGS,
+        PyDoc_STR("add(a) -> None")},
+    {"clear",           WeakSet_clear,         METH_VARARGS,
+        PyDoc_STR("clear(a) -> None")},
+    {"copy",           WeakSet_copy,         METH_VARARGS,
+        PyDoc_STR("copy(a) -> copy of WeakSet Object")},
+    {"pop",           WeakSet_pop,         METH_VARARGS,
+        PyDoc_STR("pop(a) -> Weakreference of set element")},
+    {"remove",           WeakSet_remove,         METH_VARARGS,
+        PyDoc_STR("remove(a) -> remove Weakreference of set element")},
+    {"discard",           WeakSet_discard,         METH_VARARGS,
+        PyDoc_STR("discard(a,b) -> discard Weakreference of set element")},
+    {"update",           WeakSet_update,         METH_VARARGS,
+        PyDoc_STR("update(a,b) -> updates Weakreference of set element")},
+    {"__ior__",           WeakSet_ior,         METH_VARARGS,
+        PyDoc_STR("ior(a,b) -> Weakset")},
+    {"__sub__",           WeakSet_difference,         METH_VARARGS,
+        PyDoc_STR("sub(a,b) -> Weakset after differnce update")},
+    {"difference_update",           WeakSet_difference_up,         METH_VARARGS,
+        PyDoc_STR("differnce_update(a,b) -> Weakset after differnce update")},
+    {"__and__",           WeakSet_intersection,         METH_VARARGS,
+        PyDoc_STR("and(a,b) -> Weakset after intersection")},
+    {"intersection_update",           WeakSet_intersection_update,         METH_VARARGS,
+        PyDoc_STR("intersection_update(a,b) -> Weakset after differnce update")},
+    {"__le__",           WeakSet_issubset,         METH_VARARGS,
+        PyDoc_STR("le(a,b) -> boolean")},
+    {"__lt__",           WeakSet_lt,         METH_VARARGS,
+        PyDoc_STR("lt(a,b) -> boolean")},
+    {"__ge__",           WeakSet_issuperset,         METH_VARARGS,
+        PyDoc_STR("ge(a,b) -> boolean")},
+    {"__gt__",           WeakSet_gt,         METH_VARARGS,
+        PyDoc_STR("gt(a,b) -> boolean")},
+    {"__eq__",           WeakSet_eq,         METH_VARARGS,
+        PyDoc_STR("eq(a,b) -> boolean")},
+    {"symmetric_difference",           WeakSet_symmetric_difference,         METH_VARARGS,
+        PyDoc_STR("symmetric_difference(a,b) -> symmetric_difference of Weaksets")},
+    {"__xor__",           WeakSet_xor,         METH_VARARGS,
+        PyDoc_STR("xor(a,b) -> symmetric_difference of Weaksets")},
+    {"symmetric_difference_update",           WeakSet_symmetric_difference_update,         METH_VARARGS,
+        PyDoc_STR("symmetric_difference_update(a,b) -> symmetric_difference of Weaksets")},
+    {"__ixor__",           WeakSet_ixor,         METH_VARARGS,
+        PyDoc_STR("ixor(a,b) -> symmetric_difference of Weaksets")},
+    {"symmetric_difference_update",           WeakSet_symmetric_difference_update,         METH_VARARGS,
+        PyDoc_STR("symmetric_difference_update(a,b) -> symmetric_difference of Weaksets")},
+    {"union|__or__",           WeakSet_union,         METH_VARARGS,
+        PyDoc_STR("union(a,b) -> union of Weaksets")},
+    {"isdisjoint",           WeakSet_isdisjoint,         METH_VARARGS,
+        PyDoc_STR("isdisjoint(a,b) -> boolean")},
     {NULL,              NULL}           /* sentinel */
 };
 
