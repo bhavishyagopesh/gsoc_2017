@@ -122,12 +122,12 @@ WeakSet_setattr(WeakSet *self, PyObject *v)
     }
 
     if(self->data != NULL){
-      Weakset_update(self->data);
+      WeakSet_update(self->data);
     }
 
 }
 
-static void (*_remove)(PyObject *item,Weakset *self)
+static void (*_remove)(PyObject *item,WeakSet *self)
 {
   self = *(self);
 
@@ -141,7 +141,7 @@ static void (*_remove)(PyObject *item,Weakset *self)
 }
 
 static PyObject *
-WeakSet_commit_removals(Weakset *self)
+WeakSet_commit_removals(WeakSet *self)
 {
   PyListObject *l;
   l = self->_pending_removals;
@@ -154,10 +154,46 @@ WeakSet_commit_removals(Weakset *self)
   }
 }
 
+static PyObject *
+WeakSet_iter(WeakSet *self)
+{
+  _IterationGuard *w,*l;
+  w = _IterationGuard_new(self);
+  l = _IterationGuard_enter(w);
 
+  PyObject *itemref = PyObject_GetIter(self->data);
+  PyObject *item = *(itemref);
+
+if (itemref == NULL) {
+    return NULL;
+}
+
+while (item = PyIter_Next(itemref)) {
+
+    if(item)
+    {
+      PyObject *it1 = PyObject_GetIter(*item);
+      while(it2 = PyIter_Next(it1))
+      {
+        return *(it2);
+        Py_DECREF(it2);
+      }
+      Py_DECREF(it1);
+    }
+
+    Py_DECREF(item);
+}
+
+Py_DECREF(iterator);
+
+if (PyErr_Occurred()) {
+  return NULL;
+}
+
+}
 
 static PyObject *
-Weakset_len(Weakset *self, PyObject *args)
+WeakSet_len(WeakSet *self, PyObject *args)
 {
     if (!PyArg_ParseTuple(args, ":len"))
         return NULL;
@@ -262,7 +298,7 @@ WeakSet_update(WeakSet *self, PyObject *args)
 }
 
 static PyObject *
-WeakSet__ior__(WeakSet *self, PyObject *args)
+WeakSet_ior(WeakSet *self, PyObject *args)
 {
   WeakSet *other;
   if (!PyArg_ParseTuple(args, ":__ior__",other))
