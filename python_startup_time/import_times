@@ -1,0 +1,44 @@
+time ./python -c '42'
+ - _frozen_importlib_external 0.000512342
+ - zipimport 0.000071346
+   - _codecs 0.000066174
+  - codecs 0.000591577
+  - encodings.aliases 0.000357853
+ - encodings 0.001471824
+ - encodings.utf_8 0.000216239
+ - _signal 0.000107156
+ - encodings.latin_1 0.000241734
+   - _weakrefset 0.000248402
+  - abc 0.000495336
+ - io 0.000852582
+   - errno 0.000077920
+    - _stat 0.000061941
+   - stat 0.000297606
+    - genericpath 0.000140673
+   - posixpath 0.000358141
+   - _collections_abc 0.002010472
+  - os 0.003493718
+  - _sitebuiltins 0.000337382
+  - sysconfig 0.001164703
+  - _sysconfigdata_m_linux_x86_64-linux-gnu 0.000461381
+  - sitecustomize 0.000154802
+  - usercustomize 0.000097700
+ - site 0.007001051
+./python -c '42'  0.01s user 0.00s system 99% cpu 0.018 total
+
+time ./python -Sc '42'
+ - _frozen_importlib_external 0.000599167
+ - zipimport 0.000072505
+   - _codecs 0.000063966
+  - codecs 0.000562758
+  - encodings.aliases 0.000354857
+ - encodings 0.001462676
+ - encodings.utf_8 0.000214498
+ - _signal 0.000105784
+ - encodings.latin_1 0.000239912
+   - _weakrefset 0.000243000
+  - abc 0.000486083
+ - io 0.000844676
+./python -Sc '42'  0.01s user 0.00s system 98% cpu 0.010 total
+
+
