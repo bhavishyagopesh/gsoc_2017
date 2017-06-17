@@ -1,40 +1,39 @@
-
 #include "Python.h"
-#include "clinic/_weakref.c.h"
 static PyObject *WeakSet_error = NULL; //global error
 
 typedef struct {
   PyObject_HEAD
   PyObject              *weakcontainer  //Weak-reference
+}_IterationGuard;
 
-}
-
-static PyTypeObject _IterationGuard;  //Lacks inheritance
+static PyTypeObject _IterationGuard;
 
 #define _IterationGuard_Check(v)      (Py_TYPE(v) == &_IterationGuard_Type)
 
 static PyObject*
-_IterationGuard_new(PyTypeObject *type,PyObject *args)
+_IterationGuard_new(PyObject *arg)
 {
-  _IterationGuard *self,*weakcontainer;
+  _IterationGuard *self;
   self = PyObject_New(_IterationGuard,&_IterationGuard_Type);
   if (self == NULL)
       return NULL;
-  self->weakcontainer = NULL;
+  self->weakcontainer = PyWeakref_NewRef(arg);
   return self;
 }
 
+/* This is not be required now
 static int
 _IterationGuard_setattr(_IterationGuard *self,PyObject *weakcontainer)
 {
   self->weakcontainer = PyWeakref_NewRef(weakcontainer);
 }
+*/
 
 static PyObject *
 _IterationGuard_enter(_IterationGuard *self)
 {
-  PYObject *w = *(self->weakcontainer);
-  if (w!=Py_None)
+  PyObject *w = *(self->weakcontainer);
+  if (w)
   {
     PySet_Add(w->_iterating,self);
   }
