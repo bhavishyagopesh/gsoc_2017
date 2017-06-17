@@ -144,12 +144,10 @@ WeakSet_commit_removals(WeakSet *self)
 {
   PyListObject *l;
   l = self->_pending_removals;
-  PyObject *discard;
-  discard = WeakSer_discard;
 
   while (l)
   {
-    discard()//TO Do implement discard
+    PySet_Discard(self->data, PyList_GetItem(l, PyList_Size(l)-1);
   }
 }
 
