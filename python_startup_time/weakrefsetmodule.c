@@ -45,10 +45,10 @@ _IterationGuard_exit(PyObject *self)
 {
   w = *(self->weakcontainer);
   PyObject *s = PySet_New();
-  if(w!=Py_None)
+  if(w)
   {
     s = w->_iterating ;
-    WeakSet_remove(self,s);
+    PySet_Discard(s, self);
 
     if(!s)
     {
@@ -71,7 +71,7 @@ static PyTypeObject WeakSet;
 #define WeakSet_Check(v)      (Py_TYPE(v) == &WeakSet_Type)
 
 static PyObject *
-WeakSet_new(PyObject *args)
+WeakSet_new(PyObject *arg)
 {
     WeakSet *self
     self = PyObject_New(WeakSet, &WeakSet_Type);
@@ -128,7 +128,7 @@ WeakSet_setattr(WeakSet *self, PyObject *v)
 
 static void (*_remove)(PyObject *item,WeakSet *self)
 {
-  self = *(self);
+  self = *(PyWeakref_NewRef(self));
 
   if(self!=NULL)
     {
