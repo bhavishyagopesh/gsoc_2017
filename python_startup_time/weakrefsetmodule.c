@@ -30,7 +30,7 @@ _IterationGuard_setattr(_IterationGuard *self,PyObject *weakcontainer)
 */
 
 static PyObject *
-_IterationGuard_enter(_IterationGuard *self)
+_IterationGuard_enter(PyObject *self)
 {
   PyObject *w = *(self->weakcontainer);
   if (w)
@@ -158,8 +158,8 @@ WeakSet_iter(WeakSet *self)
   w = _IterationGuard_new(self);
   l = _IterationGuard_enter(w);
 
-  PyObject *itemref = PyObject_GetIter(self->data);
-  PyObject *item = *(itemref);
+  PyObject *itemref = PyObject_GetIter(l->data);
+  PyObject *item ;
 
 if (itemref == NULL) {
     return NULL;
@@ -170,6 +170,7 @@ while (item = PyIter_Next(itemref)) {
     if(item)
     {
       PyObject *it1 = PyObject_GetIter(*item);
+      PyObject *it2;
       while(it2 = PyIter_Next(it1))
       {
         return *(it2);
@@ -187,6 +188,7 @@ if (PyErr_Occurred()) {
   return NULL;
 }
 
+_IterationGuard_exit(l);
 }
 
 static PyObject *
