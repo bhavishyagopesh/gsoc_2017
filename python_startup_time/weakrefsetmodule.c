@@ -206,7 +206,12 @@ WeakSet_contains(WeakSet *self, PyObject *args)
   PyObject *wr,*item;
   if (!PyArg_ParseTuple(args, ":contains",&item))
       return NULL;
-  wr = PyWeakref_NewRef(item);
+  if(!(wr = PyWeakref_NewRef(item)))
+  {
+    return Py_False;
+  }
+
+  else
   return PySet_Contains(self->data,wr);
 }
 
