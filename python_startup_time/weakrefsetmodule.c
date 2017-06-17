@@ -1,4 +1,4 @@
-PyNumber_And
+
 #include "Python.h"
 #include "clinic/_weakref.c.h"
 static PyObject *WeakSet_error = NULL; //global error
