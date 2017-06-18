@@ -77,54 +77,15 @@ WeakSet_new(PyObject *arg)
     self = PyObject_New(WeakSet, &WeakSet_Type);
     if (self == NULL)
         return NULL;
-    self->data = NULL;
-    self->_pending_removals = NULL;
-    self->_iterating = NULL;
-    self->_remove = NULL;
+    self->data = PySet_New();
+    if(arg)
+    self->data = arg;
+    self->_pending_removals = PyList_New();
+    self->_iterating = PySet_New();
+    self->_remove = _remove;
     return self;
 }
 
-static int
-WeakSet_setattr(WeakSet *self, PyObject *v)
-{
-    if (self->data == NULL) {
-        self->data = PySet_New();
-        if (self->data == NULL)
-            return -1;
-    }
-    if (v == NULL) {
-        int rv = PySet_Contains(self->data, v);
-        if (rv < 0)
-            PyErr_SetString(PyExc_AttributeError,
-                "delete non-existing data attribute");
-        return rv;
-    }
-    else
-        return PySet_Add(self->data, v);
-
-    if(self->_pending_removals == NULL){
-        self->_pending_removals = PyList_New();
-        if(self->_pending_removals == NULL)
-            return -1;
-    }
-
-    if (self->_iterating == NULL) {
-        self->_iterating = PySet_New();
-        if (self->_iterating == NULL)
-            return -1;
-    }
-
-    if (self->_remove == NULL){
-      self->_remove = _remove;
-      if (self->_remove == NULL)
-        return -1;
-    }
-
-    if(self->data != NULL){
-      WeakSet_update(self->data);
-    }
-
-}
 
 static void (*_remove)(PyObject *item,WeakSet *self)
 {
@@ -227,23 +188,29 @@ WeakSet_add(WeakSet *self, PyObject *args)
   PyObject *item;
   if (!PyArg_ParseTuple(args, ":add",&item))
       return NULL;
-  if(_pending_removals!=NULL)
-    WeakSet_commit_removals(self); /*To------------------------Do*/
-  PySet_Add(self->data,PyWeakref_NewRef(item));
+  if(_pending_removals)
+    WeakSet_commit_removals(self);
+  PySet_Add(self->data,PyWeakref_NewRef(item,self->_remove));
 }
 
 void
 WeakSet_clear(WeakSet *self, PyObject *args)
 {
-  if(_pending_removals!=NULL)
-    WeakSet_commit_removals(self) /*To------------------------Do*/
+  if(_pending_removals)
+    WeakSet_commit_removals(self);
   PySet_Clear(self->data);
 }
 
+/*Non-standard and probably incorrect implementation*/
 static PyObject *
 WeakSet_copy(WeakSet *self)
 {
-  return PyInstanceMethod_Function(self);
+  WeakSet *l;
+  *(l->data) = *(self->data);
+  *(l->_pending_removals) = *(self->_pending_removals);
+  *(l->_commit_removals) = *(self->_commit_removals);
+  *(l->_return) = *(self->_return);
+  return l
 }
 
 static PyObject *
