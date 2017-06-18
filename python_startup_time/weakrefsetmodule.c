@@ -221,9 +221,14 @@ WeakSet_pop(WeakSet *self)
   while(1)
   {
     PySetObject *itemref;
+    PyObject *item;
     itemref = PySet_Pop(self->data);
     if(itemref!=NULL)
-      return itemref;
+      PyErr_SetString(PyExc_KeyError,"pop from empty WeakSet");
+
+      item = *itemref
+      if(item)
+      return item;
   }
 }
 
@@ -259,12 +264,24 @@ WeakSet_update(WeakSet *self, PyObject *args)
       return NULL;
   if(_pending_removals!=NULL)
       WeakSet_commit_removals(self);
-  int l = Py_Size(other);
-  while(l)
-  {
-    WeakSet_add(self,*(other+l-1));  //very-very hackish
-    l--;
-  }
+
+    PyObject *iterator = PyObject_GetIter(other);
+    PyObject *element;
+
+    if (iterator == NULL) {
+        return NULL;
+    }
+
+    while (element= PyIter_Next(iterator)) {
+        WeakSet_add(self,element)
+        Py_DECREF(item);
+    }
+
+    Py_DECREF(iterator);
+
+    if (PyErr_Occurred()) {
+        return NULL;
+    }
 }
 
 static PyObject *
@@ -294,29 +311,40 @@ WeakSet_difference_update(WeakSet *self, PyObject *args)
   WeakSet *other;
   if (!PyArg_ParseTuple(args, ":difference_update",&other))
     return NULL;
-  WeakSet___isub__(other);
+  WeakSet_isub(self,other);
 }
 
 static PyObject *
-WeakSet_isub_(WeakSet *self, PyObject *args)
+WeakSet_isub(WeakSet *self, PyObject *args)
 {
   WeakSet *other;
   if (!PyArg_ParseTuple(args, ":__isub__",&other))
     return NULL;
   if(_pending_removals!=NULL)
     WeakSet_commit_removals(self);
-  if(self==other) //check how to Implement "is"
+  if(self==other)
     PySet_Clear(self->data);
   else
     {
-      int l = Py_Size(other);
-      while(l)
-      {
-        WeakSet_difference_update(PyWeakref_NewRef(*(other+l-1))) //again hack
-        l--;
-      }
-    }
+          PyObject *iterator = PyObject_GetIter(other);
+          PyObject *item;
 
+          if (iterator == NULL) {
+          return NULL;
+        }
+
+        while (item = PyIter_Next(iterator)) {
+          PyNumber_Subtract(self->data,  PyWeakref_NewRef(item))
+          Py_DECREF(item);
+        }
+
+        Py_DECREF(iterator);
+
+        if (PyErr_Occurred()) {
+        return NULL;
+        }
+
+    }
   return self;
 }
 
