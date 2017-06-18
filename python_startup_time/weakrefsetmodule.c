@@ -40,10 +40,10 @@ _IterationGuard_enter(PyObject *self)
   return self;
 }
 
-static PyObject *                    //Doubtful of parameters e,t,b
+static PyObject *                    //Doubtful of parameters Type,Value,Trace
 _IterationGuard_exit(PyObject *self)
 {
-  w = *(self->weakcontainer);
+  PyObject *w = *(self->weakcontainer);
   PyObject *s = PySet_New();
   if(w)
   {
@@ -55,6 +55,8 @@ _IterationGuard_exit(PyObject *self)
       *(w->_commit_removals);
     }
   }
+  Py_DECREF(s);
+  Py_DECREF(w);
 }
 
 
@@ -112,11 +114,11 @@ WeakSet_commit_removals(WeakSet *self)
 {
   PyListObject *l;
   l = self->_pending_removals;
-
   while (l)
   {
     PySet_Discard(self->data, PyList_GetItem(l, PyList_Size(l)-1);
   }
+  Py_DECREF(l);
 }
 
 static PyObject *
@@ -156,6 +158,8 @@ if (PyErr_Occurred()) {
   return NULL;
 }
 
+Py_DECREF(l);
+Py_DECREF(w);
 _IterationGuard_exit(l);
 }
 
@@ -281,7 +285,7 @@ WeakSet_update(WeakSet *self, PyObject *args)
 
     while (element= PyIter_Next(iterator)) {
         WeakSet_add(self,element)
-        Py_DECREF(item);
+        Py_DECREF(element);
     }
 
     Py_DECREF(iterator);
