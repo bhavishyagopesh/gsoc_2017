@@ -100,6 +100,13 @@ static void (*_remove)(PyObject *item,WeakSet *self)
     }
 }
 
+static void
+WeakSet_dealloc(WeakSet *self)
+{
+    Py_XDECREF(self->data);
+    PyObject_Del(self);
+}
+
 static PyObject *
 WeakSet_commit_removals(WeakSet *self)
 {
@@ -633,7 +640,7 @@ WeakSet_isdisjoint(PyObject *self,PyObject *other)
   return(WeakSet_len(WeakSet_intersection(self,other))==0);
 }
 
-static PyTypeObject WeakSet = {
+static PyTypeObject WeakSet_Type = {
     /* The ob_type field must be initialized in the module init function
      * to be portable to Windows without using C++. */
     PyVarObject_HEAD_INIT(NULL, 0)
@@ -641,10 +648,10 @@ static PyTypeObject WeakSet = {
     sizeof(WeakSet),          /*tp_basicsize*/
     0,                          /*tp_itemsize*/
     /* methods */
-    (destructor)Xxo_dealloc,    /*tp_dealloc*/
+    (destructor)WeakSet_dealloc,    /*tp_dealloc*/
     0,                          /*tp_print*/
     (getattrfunc)0,             /*tp_getattr*/
-    (setattrfunc)WeakSet_setattr,   /*tp_setattr*/
+    0,                          /*tp_setattr*/
     0,                          /*tp_reserved*/
     0,                          /*tp_repr*/
     0,                          /*tp_as_number*/
@@ -653,7 +660,7 @@ static PyTypeObject WeakSet = {
     0,                          /*tp_hash*/
     0,                          /*tp_call*/
     0,                          /*tp_str*/
-    (getattrofunc)WeakSet_getattro, /*tp_getattro*/
+    0, /*tp_getattro*/
     0,                          /*tp_setattro*/
     0,                          /*tp_as_buffer*/
     Py_TPFLAGS_DEFAULT,         /*tp_flags*/
@@ -662,7 +669,7 @@ static PyTypeObject WeakSet = {
     0,                          /*tp_clear*/
     0,                          /*tp_richcompare*/
     0,                          /*tp_weaklistoffset*/
-    0,                          /*tp_iter*/
+    WeakSet_iter,                          /*tp_iter*/
     0,                          /*tp_iternext*/
     WeakSet_methods,                /*tp_methods*/
     0,                          /*tp_members*/
@@ -674,66 +681,10 @@ static PyTypeObject WeakSet = {
     0,                          /*tp_dictoffset*/
     0,                          /*tp_init*/
     0,                          /*tp_alloc*/
-    WeakSet_new,                          /*tp_new*/
+    WeakSet_new,                /*tp_new*/
     0,                          /*tp_free*/
     0,                          /*tp_is_gc*/
 };
-
-static PyObject *
-null_richcompare(PyObject *self, PyObject *other, int op)
-{
-    Py_INCREF(Py_NotImplemented);
-    return Py_NotImplemented;
-}
-
-static PyTypeObject Null_Type = {
-    /* The ob_type field must be initialized in the module init function
-     * to be portable to Windows without using C++. */
-    PyVarObject_HEAD_INIT(NULL, 0)
-    "xxmodule.Null",            /*tp_name*/
-    0,                          /*tp_basicsize*/
-    0,                          /*tp_itemsize*/
-    /* methods */
-    0,                          /*tp_dealloc*/
-    0,                          /*tp_print*/
-    0,                          /*tp_getattr*/
-    0,                          /*tp_setattr*/
-    0,                          /*tp_reserved*/
-    0,                          /*tp_repr*/
-    0,                          /*tp_as_number*/
-    0,                          /*tp_as_sequence*/
-    0,                          /*tp_as_mapping*/
-    0,                          /*tp_hash*/
-    0,                          /*tp_call*/
-    0,                          /*tp_str*/
-    0,                          /*tp_getattro*/
-    0,                          /*tp_setattro*/
-    0,                          /*tp_as_buffer*/
-    Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE, /*tp_flags*/
-    0,                          /*tp_doc*/
-    0,                          /*tp_traverse*/
-    0,                          /*tp_clear*/
-    null_richcompare,           /*tp_richcompare*/
-    0,                          /*tp_weaklistoffset*/
-    0,                          /*tp_iter*/
-    0,                          /*tp_iternext*/
-    0,                          /*tp_methods*/
-    0,                          /*tp_members*/
-    0,                          /*tp_getset*/
-    0, /* see PyInit_xx */      /*tp_base*/
-    0,                          /*tp_dict*/
-    0,                          /*tp_descr_get*/
-    0,                          /*tp_descr_set*/
-    0,                          /*tp_dictoffset*/
-    0,                          /*tp_init*/
-    0,                          /*tp_alloc*/
-    0, /* see PyInit_xx */      /*tp_new*/
-    0,                          /*tp_free*/
-    0,                          /*tp_is_gc*/
-};
-
-
-/* ---------- */
 
 
 /* List of functions defined in the module */
@@ -800,70 +751,17 @@ static PyMethodDef WeakSet_methods[] = {
     {NULL,              NULL}           /* sentinel */
 };
 
-PyDoc_STRVAR(module_doc,
-"This is a template module just for instruction.");
-
-
-static int
-xx_exec(PyObject *m)
-{
-    /* Due to cross platform compiler issues the slots must be filled
-     * here. It's required for portability to Windows without requiring
-     * C++. */
-    Null_Type.tp_base = &PyBaseObject_Type;
-    Null_Type.tp_new = PyType_GenericNew;
-    Str_Type.tp_base = &PyUnicode_Type;
-
-    /* Finalize the type object including setting type of the new type
-     * object; doing it here is required for portability, too. */
-    if (PyType_Ready(&Xxo_Type) < 0)
-        goto fail;
-
-    /* Add some symbolic constants to the module */
-    if (ErrorObject == NULL) {
-        ErrorObject = PyErr_NewException("xx.error", NULL, NULL);
-        if (ErrorObject == NULL)
-            goto fail;
-    }
-    Py_INCREF(ErrorObject);
-    PyModule_AddObject(m, "error", ErrorObject);
-
-    /* Add Str */
-    if (PyType_Ready(&Str_Type) < 0)
-        goto fail;
-    PyModule_AddObject(m, "Str", (PyObject *)&Str_Type);
-
-    /* Add Null */
-    if (PyType_Ready(&Null_Type) < 0)
-        goto fail;
-    PyModule_AddObject(m, "Null", (PyObject *)&Null_Type);
-    return 0;
- fail:
-    Py_XDECREF(m);
-    return -1;
-}
-
-static struct PyModuleDef_Slot xx_slots[] = {
-    {Py_mod_exec, xx_exec},
-    {0, NULL},
-};
-
-static struct PyModuleDef xxmodule = {
-    PyModuleDef_HEAD_INIT,
-    "xx",
-    module_doc,
-    0,
-    xx_methods,
-    xx_slots,
-    NULL,
-    NULL,
-    NULL
-};
-
-/* Export function for the module (*must* be called PyInit_xx) */
 
 PyMODINIT_FUNC
-PyInit_xx(void)
+PyInit_WeakSet(void)
 {
-    return PyModuleDef_Init(&xxmodule);
+    PyObject *module = PyModule_Create(&weakrefsetmodule);
+    if(!module)
+      return NULL;
+    if(PyType_Ready(&PyWeakSet_Type)<0)
+    return NULL;
+
+    Py_INCREF((PyObject*)&PyWeakSet_Type);
+    PyModule_AddObject(module,"weakrefset",(PyObject*)&PyWeakSet_Type);
+    return module;
 }
