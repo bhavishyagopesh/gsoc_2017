@@ -22,7 +22,7 @@ _IterationGuard_new(PyObject *arg)
   return self;
 }
 
-/* This is not be required now
+/* This is not required now
 static int
 _IterationGuard_setattr(_IterationGuard *self,PyObject *weakcontainer)
 {
@@ -41,7 +41,7 @@ _IterationGuard_enter(PyObject *self)
   return self;
 }
 
-static PyObject *                    //Doubtful of parameters Type,Value,Trace
+static PyObject *                    /*Doubtful of parameters Type,Value,Trace*/
 _IterationGuard_exit(PyObject *self)
 {
   PyObject *w = *(self->weakcontainer);
