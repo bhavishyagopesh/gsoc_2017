@@ -4,7 +4,7 @@ static PyObject *WeakSet_error = NULL;
 
 typedef struct {
   PyObject_HEAD
-  PyObject              *weakcontainer
+  PyObject              *weakcontainer;
 } _IterationGuard;
 
 static PyTypeObject _IterationGuard;
@@ -65,9 +65,9 @@ _IterationGuard_exit(PyObject *self)
 typedef struct {
     PyObject_HEAD
     PyObject            *data;
-    PyObject            *_pending_removals
-    PyObject            *_iterating
-    PyObject            *_remove
+    PyObject            *_pending_removals;
+    PyObject            *_iterating;
+    PyObject            *_remove;
 
 static PyTypeObject WeakSet;
 
