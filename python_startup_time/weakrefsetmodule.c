@@ -3,71 +3,11 @@
 static PyObject *WeakSet_error = NULL;
 
 typedef struct {
-  PyObject_HEAD
-  PyObject              *weakcontainer
-} _IterationGuard;
-
-static PyTypeObject _IterationGuard;
-
-#define _IterationGuard_Check(v)      (Py_TYPE(v) == &_IterationGuard_Type)
-
-static PyObject*
-_IterationGuard_new(PyObject *arg)
-{
-  _IterationGuard *self;
-  self = PyObject_New(_IterationGuard, &_IterationGuard_Type);
-  if (self == NULL)
-      return NULL;
-  self->weakcontainer = PyWeakref_NewRef(arg);
-  return self;
-}
-
-/* This is not required now
-static int
-_IterationGuard_setattr(_IterationGuard *self,PyObject *weakcontainer)
-{
-  self->weakcontainer = PyWeakref_NewRef(weakcontainer);
-}
-*/
-
-static PyObject *
-_IterationGuard_enter(PyObject *self)
-{
-  PyObject *w = *(self->weakcontainer);
-  if (w)
-  {
-    PySet_Add(w->_iterating, self);
-  }
-  return self;
-}
-
-static PyObject *                    /*Doubtful of parameters Type,Value,Trace*/
-_IterationGuard_exit(PyObject *self)
-{
-  PyObject *w = *(self->weakcontainer);
-  PyObject *s = PySet_New();
-
-  if(w)
-  {
-    s = w->_iterating ;
-    PySet_Discard(s, self);
-
-    if(!s)
-    {
-      *(w->_commit_removals);
-    }
-  }
-  Py_DECREF(s);
-  Py_DECREF(w);
-}
-
-
-typedef struct {
     PyObject_HEAD
     PyObject            *data;
-    PyObject            *_pending_removals
-    PyObject            *_iterating
-    PyObject            *_remove
+    PyObject            *_pending_removals;
+    PyObject            *_iterating;
+    PyObject            *_remove;
 
 static PyTypeObject WeakSet;
 
@@ -126,12 +66,15 @@ WeakSet_commit_removals(WeakSet *self)
 static PyObject *
 WeakSet_iter(WeakSet *self)
 {
-  _IterationGuard *w,*l;
+  PyObject *w,*s;
 
-  w = _IterationGuard_new(self);
-  l = _IterationGuard_enter(w);
+  w = PyWeakref_NewRef(self);
 
-  PyObject *itemref = PyObject_GetIter(l->data);
+  if(w)
+  {
+    PySet_Add(*w->_iterating,w)
+  }
+  PyObject *itemref = PyObject_GetIter(*w->data);
   PyObject *item ;
 
   if (itemref == NULL)
@@ -164,9 +107,16 @@ WeakSet_iter(WeakSet *self)
     return NULL;
   }
 
-  Py_DECREF(l);
+  if(w)
+  {
+    s = *w->_iterating;
+    PySet_Discard(s,w);
+    if(!s)
+    {
+        WeakSet_commit_removals(*w);
+    }
+  }
   Py_DECREF(w);
-  _IterationGuard_exit(l);
 }
 
 static PyObject *
