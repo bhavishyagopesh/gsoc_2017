@@ -26,6 +26,8 @@ def import_module(name, package=None):
     if path is not None:
         setattr(parent_module, child_name, module)
     return module
+
+#For sake of comparision
 for _ in range(1000):
     import_module('pprint','pprint')
     del sys.modules['pprint']

@@ -2,7 +2,7 @@ import importlib.util
 from importlib.util import LazyLoader
 import sys
 
-def import_module(name, package=None):
+def lazy_import_module(name, package=None):
     """An implementation of lazy-import."""
     absolute_name = importlib.util.resolve_name(name, package)
     try:
@@ -13,7 +13,7 @@ def import_module(name, package=None):
     path = None
     if '.' in absolute_name:
         parent_name, _, child_name = absolute_name.rpartition('.')
-        parent_module = import_module(parent_name)
+        parent_module = lazy_import_module(parent_name)
         path = parent_module.spec.submodule_search_locations
     for finder in sys.meta_path:
         spec = finder.find_spec(absolute_name, path)
@@ -29,6 +29,7 @@ def import_module(name, package=None):
         setattr(parent_module, child_name, module)
     return module
 
+#For making a comparision 
 for _ in range(1000):
-    import_module('pprint','pprint')
+    lazy_import_module('pprint','pprint')
     del sys.modules['pprint']
