@@ -1,0 +1,38 @@
+.....................
+sqlite_synth: Mean +- std dev: 4.65 us +- 0.07 us
+ vmprof output:
+ %:      name:                                 location:
+ 100.0%  _run_module_as_main                   /usr/lib/python3.6/runpy.py:167
+ 100.0%  _run_code                             /usr/lib/python3.6/runpy.py:62
+ 100.0%  <module>                              /usr/lib/python3.6/site-packages/vmprof/__main__.py:1
+ 100.0%  main                                  /usr/lib/python3.6/site-packages/vmprof/__main__.py:30
+ 100.0%  run_path                              /usr/lib/python3.6/runpy.py:239
+ 100.0%  _run_module_code                      /usr/lib/python3.6/runpy.py:88
+ 100.0%  <module>                              bm_sqlite_synth.py:7
+ 100.0%  _find_and_load                        <frozen importlib._bootstrap>:958
+ 100.0%  _find_and_load_unlocked               <frozen importlib._bootstrap>:931
+ 100.0%  _load_unlocked                        <frozen importlib._bootstrap>:641
+ 100.0%  exec_module                           <frozen importlib._bootstrap_external>:672
+ 100.0%  n:<native symbol 0x7f072c32a961>:0:- 
+ 75.0%   n:_PyCFunction_FastCallDict:0:-      
+ 75.0%   _call_with_frames_removed             <frozen importlib._bootstrap>:197
+ 75.0%   <module>                              /usr/lib/python3.6/sqlite3/__init__.py:23
+ 50.0%   get_code                              <frozen importlib._bootstrap_external>:743
+ 50.0%   _compile_bytecode                     <frozen importlib._bootstrap_external>:485
+ 50.0%   n:<native symbol 0x7f072c2fff91>:0:- 
+ 50.0%   n:<native symbol 0x7f072c2fff61>:0:- 
+ 50.0%   n:<native symbol 0x7f072c2feb21>:0:- 
+ 50.0%   parse_load_avg                        /usr/lib/python3.6/site-packages/perf/_metadata.py:48
+ 50.0%   is_positive                           /usr/lib/python3.6/site-packages/perf/_metadata.py:44
+ 25.0%   _gcd                                  /usr/lib/python3.6/fractions.py:32
+ 25.0%   gcd                                   /usr/lib/python3.6/fractions.py:17
+ 25.0%   namedtuple                            /usr/lib/python3.6/collections/__init__.py:359
+ 25.0%   n:<native symbol 0x7f072c2ea7a1>:0:- 
+ 25.0%   n:PyRun_StringFlags:0:-              
+ 25.0%   n:PyParser_ASTFromStringObject:0:-   
+ 25.0%   n:PyParser_ParseStringObject:0:-     
+ 25.0%   <module>                              /usr/lib/python3.6/site-packages/perf/_runner.py:1
+ 25.0%   <module>                              /usr/lib/python3.6/site-packages/perf/_cpu_utils.py:1
+ 25.0%   _find_spec                            <frozen importlib._bootstrap>:861
+ 25.0%   n:<native symbol 0x7f072c32a3f1>:0:- 
+ 25.0%   n:<native symbol 0x7f072c329001>:0:- 
