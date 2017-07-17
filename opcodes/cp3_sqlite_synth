@@ -1,0 +1,63 @@
+  7           0 LOAD_CONST               0 ('\nSQLite benchmark.\n\nThe goal of the benchmark is to test CFFI performance and going back and forth\nbetween SQLite and Python a lot. Therefore the queries themselves are really\nsimple.\n')
+              3 STORE_NAME               0 (__doc__)
+
+  9           6 LOAD_CONST               1 (-1)
+              9 LOAD_CONST               2 (None)
+             12 IMPORT_NAME              1 (sqlite3)
+             15 STORE_NAME               1 (sqlite3)
+
+ 10          18 LOAD_CONST               1 (-1)
+             21 LOAD_CONST               2 (None)
+             24 IMPORT_NAME              2 (math)
+             27 STORE_NAME               2 (math)
+
+ 12          30 LOAD_CONST               1 (-1)
+             33 LOAD_CONST               2 (None)
+             36 IMPORT_NAME              3 (perf)
+             39 STORE_NAME               3 (perf)
+
+ 13          42 LOAD_CONST               1 (-1)
+             45 LOAD_CONST               3 (('xrange',))
+             48 IMPORT_NAME              4 (six.moves)
+             51 IMPORT_FROM              5 (xrange)
+             54 STORE_NAME               5 (xrange)
+             57 POP_TOP             
+
+ 16          58 LOAD_CONST               4 ('AvgLength')
+             61 LOAD_NAME                6 (object)
+             64 BUILD_TUPLE              1
+             67 LOAD_CONST               5 (<code object AvgLength at 0x7ff055d94730, file "performance/performance/benchmarks/bm_sqlite_synth.py", line 16>)
+             70 MAKE_FUNCTION            0
+             73 CALL_FUNCTION            0
+             76 BUILD_CLASS         
+             77 STORE_NAME               7 (AvgLength)
+
+ 31          80 LOAD_CONST               6 (<code object bench_sqlite at 0x7ff055d948b0, file "performance/performance/benchmarks/bm_sqlite_synth.py", line 31>)
+             83 MAKE_FUNCTION            0
+             86 STORE_NAME               8 (bench_sqlite)
+
+ 55          89 LOAD_NAME                9 (__name__)
+             92 LOAD_CONST               7 ('__main__')
+             95 COMPARE_OP               2 (==)
+             98 POP_JUMP_IF_FALSE      145
+
+ 56         101 LOAD_NAME                3 (perf)
+            104 LOAD_ATTR               10 (Runner)
+            107 CALL_FUNCTION            0
+            110 STORE_NAME              11 (runner)
+
+ 57         113 LOAD_CONST               8 ('Benchmark Python aggregate for SQLite')
+            116 LOAD_NAME               11 (runner)
+            119 LOAD_ATTR               12 (metadata)
+            122 LOAD_CONST               9 ('description')
+            125 STORE_SUBSCR        
+
+ 58         126 LOAD_NAME               11 (runner)
+            129 LOAD_ATTR               13 (bench_time_func)
+            132 LOAD_CONST              10 ('sqlite_synth')
+            135 LOAD_NAME                8 (bench_sqlite)
+            138 CALL_FUNCTION            2
+            141 POP_TOP             
+            142 JUMP_FORWARD             0 (to 145)
+        >>  145 LOAD_CONST               2 (None)
+            148 RETURN_VALUE        
