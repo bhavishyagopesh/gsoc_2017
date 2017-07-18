@@ -1,0 +1,57 @@
+  6           0 LOAD_CONST               0 ('\nPure-Python Implementation of the AES block-cipher.\n\nBenchmark AES in CTR mode using the pyaes module.\n')
+              3 STORE_NAME               0 (__doc__)
+
+  8           6 LOAD_CONST               1 (-1)
+              9 LOAD_CONST               2 (None)
+             12 IMPORT_NAME              1 (perf)
+             15 STORE_NAME               1 (perf)
+
+  9          18 LOAD_CONST               1 (-1)
+             21 LOAD_CONST               3 (('xrange',))
+             24 IMPORT_NAME              2 (six.moves)
+             27 IMPORT_FROM              3 (xrange)
+             30 STORE_NAME               3 (xrange)
+             33 POP_TOP             
+
+ 11          34 LOAD_CONST               1 (-1)
+             37 LOAD_CONST               2 (None)
+             40 IMPORT_NAME              4 (pyaes)
+             43 STORE_NAME               4 (pyaes)
+
+ 14          46 LOAD_CONST               4 ('This is a test. What could possibly go wrong? ')
+             49 LOAD_CONST               5 (500)
+             52 BINARY_MULTIPLY     
+             53 STORE_NAME               5 (CLEARTEXT)
+
+ 17          56 LOAD_CONST               6 ('\xa1\xf6%\x8c\x87}_\xcd\x89dHE8\xbf\xc9,')
+             59 STORE_NAME               6 (KEY)
+
+ 20          62 LOAD_CONST               7 (<code object bench_pyaes at 0x7f655a15d930, file "/home/bhavishya/GSoC/performance/performance/benchmarks/bm_crypto_pyaes.py", line 20>)
+             65 MAKE_FUNCTION            0
+             68 STORE_NAME               7 (bench_pyaes)
+
+ 42          71 LOAD_NAME                8 (__name__)
+             74 LOAD_CONST               8 ('__main__')
+             77 COMPARE_OP               2 (==)
+             80 POP_JUMP_IF_FALSE      127
+
+ 43          83 LOAD_NAME                1 (perf)
+             86 LOAD_ATTR                9 (Runner)
+             89 CALL_FUNCTION            0
+             92 STORE_NAME              10 (runner)
+
+ 44          95 LOAD_CONST               9 ('Pure-Python Implementation of the AES block-cipher')
+             98 LOAD_NAME               10 (runner)
+            101 LOAD_ATTR               11 (metadata)
+            104 LOAD_CONST              10 ('description')
+            107 STORE_SUBSCR        
+
+ 46         108 LOAD_NAME               10 (runner)
+            111 LOAD_ATTR               12 (bench_time_func)
+            114 LOAD_CONST              11 ('crypto_pyaes')
+            117 LOAD_NAME                7 (bench_pyaes)
+            120 CALL_FUNCTION            2
+            123 POP_TOP             
+            124 JUMP_FORWARD             0 (to 127)
+        >>  127 LOAD_CONST               2 (None)
+            130 RETURN_VALUE        
