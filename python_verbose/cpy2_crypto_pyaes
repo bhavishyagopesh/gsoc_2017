@@ -1,0 +1,355 @@
+# installing zipimport hook
+import zipimport # builtin
+# installed zipimport hook
+# /usr/lib/python2.7/site.pyc matches /usr/lib/python2.7/site.py
+import site # precompiled from /usr/lib/python2.7/site.pyc
+# /usr/lib/python2.7/os.pyc matches /usr/lib/python2.7/os.py
+import os # precompiled from /usr/lib/python2.7/os.pyc
+import errno # builtin
+import posix # builtin
+# /usr/lib/python2.7/posixpath.pyc matches /usr/lib/python2.7/posixpath.py
+import posixpath # precompiled from /usr/lib/python2.7/posixpath.pyc
+# /usr/lib/python2.7/stat.pyc matches /usr/lib/python2.7/stat.py
+import stat # precompiled from /usr/lib/python2.7/stat.pyc
+# /usr/lib/python2.7/genericpath.pyc matches /usr/lib/python2.7/genericpath.py
+import genericpath # precompiled from /usr/lib/python2.7/genericpath.pyc
+# /usr/lib/python2.7/warnings.pyc matches /usr/lib/python2.7/warnings.py
+import warnings # precompiled from /usr/lib/python2.7/warnings.pyc
+# /usr/lib/python2.7/linecache.pyc matches /usr/lib/python2.7/linecache.py
+import linecache # precompiled from /usr/lib/python2.7/linecache.pyc
+# /usr/lib/python2.7/types.pyc matches /usr/lib/python2.7/types.py
+import types # precompiled from /usr/lib/python2.7/types.pyc
+# /usr/lib/python2.7/UserDict.pyc matches /usr/lib/python2.7/UserDict.py
+import UserDict # precompiled from /usr/lib/python2.7/UserDict.pyc
+# /usr/lib/python2.7/_abcoll.pyc matches /usr/lib/python2.7/_abcoll.py
+import _abcoll # precompiled from /usr/lib/python2.7/_abcoll.pyc
+# /usr/lib/python2.7/abc.pyc matches /usr/lib/python2.7/abc.py
+import abc # precompiled from /usr/lib/python2.7/abc.pyc
+# /usr/lib/python2.7/_weakrefset.pyc matches /usr/lib/python2.7/_weakrefset.py
+import _weakrefset # precompiled from /usr/lib/python2.7/_weakrefset.pyc
+import _weakref # builtin
+# /usr/lib/python2.7/copy_reg.pyc matches /usr/lib/python2.7/copy_reg.py
+import copy_reg # precompiled from /usr/lib/python2.7/copy_reg.pyc
+# /usr/lib/python2.7/traceback.pyc matches /usr/lib/python2.7/traceback.py
+import traceback # precompiled from /usr/lib/python2.7/traceback.pyc
+# /usr/lib/python2.7/sysconfig.pyc matches /usr/lib/python2.7/sysconfig.py
+import sysconfig # precompiled from /usr/lib/python2.7/sysconfig.pyc
+# /usr/lib/python2.7/re.pyc matches /usr/lib/python2.7/re.py
+import re # precompiled from /usr/lib/python2.7/re.pyc
+# /usr/lib/python2.7/sre_compile.pyc matches /usr/lib/python2.7/sre_compile.py
+import sre_compile # precompiled from /usr/lib/python2.7/sre_compile.pyc
+import _sre # builtin
+# /usr/lib/python2.7/sre_parse.pyc matches /usr/lib/python2.7/sre_parse.py
+import sre_parse # precompiled from /usr/lib/python2.7/sre_parse.pyc
+# /usr/lib/python2.7/sre_constants.pyc matches /usr/lib/python2.7/sre_constants.py
+import sre_constants # precompiled from /usr/lib/python2.7/sre_constants.pyc
+dlopen("/usr/lib/python2.7/lib-dynload/_locale.so", 2);
+import _locale # dynamically loaded from /usr/lib/python2.7/lib-dynload/_locale.so
+# /usr/lib/python2.7/_sysconfigdata.pyc matches /usr/lib/python2.7/_sysconfigdata.py
+import _sysconfigdata # precompiled from /usr/lib/python2.7/_sysconfigdata.pyc
+# zipimport: found 8 names in /usr/lib/python2.7/site-packages/pyprof2calltree-1.4.1-py2.7.egg
+import encodings # directory /usr/lib/python2.7/encodings
+# /usr/lib/python2.7/encodings/__init__.pyc matches /usr/lib/python2.7/encodings/__init__.py
+import encodings # precompiled from /usr/lib/python2.7/encodings/__init__.pyc
+# /usr/lib/python2.7/codecs.pyc matches /usr/lib/python2.7/codecs.py
+import codecs # precompiled from /usr/lib/python2.7/codecs.pyc
+import _codecs # builtin
+# /usr/lib/python2.7/encodings/aliases.pyc matches /usr/lib/python2.7/encodings/aliases.py
+import encodings.aliases # precompiled from /usr/lib/python2.7/encodings/aliases.pyc
+# /usr/lib/python2.7/encodings/utf_8.pyc matches /usr/lib/python2.7/encodings/utf_8.py
+import encodings.utf_8 # precompiled from /usr/lib/python2.7/encodings/utf_8.pyc
+Python 2.7.13 (default, Feb 11 2017, 12:22:40) 
+[GCC 6.3.1 20170109] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+import perf # directory /usr/lib/python2.7/site-packages/perf
+# /usr/lib/python2.7/site-packages/perf/__init__.pyc matches /usr/lib/python2.7/site-packages/perf/__init__.py
+import perf # precompiled from /usr/lib/python2.7/site-packages/perf/__init__.pyc
+# /usr/lib/python2.7/__future__.pyc matches /usr/lib/python2.7/__future__.py
+import __future__ # precompiled from /usr/lib/python2.7/__future__.pyc
+dlopen("/usr/lib/python2.7/lib-dynload/time.so", 2);
+import time # dynamically loaded from /usr/lib/python2.7/lib-dynload/time.so
+# /usr/lib/python2.7/site-packages/perf/_utils.pyc matches /usr/lib/python2.7/site-packages/perf/_utils.py
+import perf._utils # precompiled from /usr/lib/python2.7/site-packages/perf/_utils.pyc
+# /usr/lib/python2.7/contextlib.pyc matches /usr/lib/python2.7/contextlib.py
+import contextlib # precompiled from /usr/lib/python2.7/contextlib.pyc
+# /usr/lib/python2.7/functools.pyc matches /usr/lib/python2.7/functools.py
+import functools # precompiled from /usr/lib/python2.7/functools.pyc
+dlopen("/usr/lib/python2.7/lib-dynload/_functools.so", 2);
+import _functools # dynamically loaded from /usr/lib/python2.7/lib-dynload/_functools.so
+dlopen("/usr/lib/python2.7/lib-dynload/datetime.so", 2);
+import datetime # dynamically loaded from /usr/lib/python2.7/lib-dynload/datetime.so
+dlopen("/usr/lib/python2.7/lib-dynload/math.so", 2);
+import math # dynamically loaded from /usr/lib/python2.7/lib-dynload/math.so
+# /usr/lib/python2.7/platform.pyc matches /usr/lib/python2.7/platform.py
+import platform # precompiled from /usr/lib/python2.7/platform.pyc
+# /usr/lib/python2.7/string.pyc matches /usr/lib/python2.7/string.py
+import string # precompiled from /usr/lib/python2.7/string.pyc
+dlopen("/usr/lib/python2.7/lib-dynload/strop.so", 2);
+import strop # dynamically loaded from /usr/lib/python2.7/lib-dynload/strop.so
+# /usr/lib/python2.7/site-packages/six.pyc matches /usr/lib/python2.7/site-packages/six.py
+import six # precompiled from /usr/lib/python2.7/site-packages/six.pyc
+dlopen("/usr/lib/python2.7/lib-dynload/itertools.so", 2);
+import itertools # dynamically loaded from /usr/lib/python2.7/lib-dynload/itertools.so
+dlopen("/usr/lib/python2.7/lib-dynload/operator.so", 2);
+import operator # dynamically loaded from /usr/lib/python2.7/lib-dynload/operator.so
+# /usr/lib/python2.7/StringIO.pyc matches /usr/lib/python2.7/StringIO.py
+import StringIO # precompiled from /usr/lib/python2.7/StringIO.pyc
+import statistics # directory /usr/lib/python2.7/site-packages/statistics
+# /usr/lib/python2.7/site-packages/statistics/__init__.pyc matches /usr/lib/python2.7/site-packages/statistics/__init__.py
+import statistics # precompiled from /usr/lib/python2.7/site-packages/statistics/__init__.pyc
+# /usr/lib/python2.7/collections.pyc matches /usr/lib/python2.7/collections.py
+import collections # precompiled from /usr/lib/python2.7/collections.pyc
+dlopen("/usr/lib/python2.7/lib-dynload/_collections.so", 2);
+import _collections # dynamically loaded from /usr/lib/python2.7/lib-dynload/_collections.so
+# /usr/lib/python2.7/keyword.pyc matches /usr/lib/python2.7/keyword.py
+import keyword # precompiled from /usr/lib/python2.7/keyword.pyc
+# /usr/lib/python2.7/heapq.pyc matches /usr/lib/python2.7/heapq.py
+import heapq # precompiled from /usr/lib/python2.7/heapq.pyc
+dlopen("/usr/lib/python2.7/lib-dynload/_heapq.so", 2);
+import _heapq # dynamically loaded from /usr/lib/python2.7/lib-dynload/_heapq.so
+import thread # builtin
+# /usr/lib/python2.7/fractions.pyc matches /usr/lib/python2.7/fractions.py
+import fractions # precompiled from /usr/lib/python2.7/fractions.pyc
+# /usr/lib/python2.7/decimal.pyc matches /usr/lib/python2.7/decimal.py
+import decimal # precompiled from /usr/lib/python2.7/decimal.pyc
+# /usr/lib/python2.7/numbers.pyc matches /usr/lib/python2.7/numbers.py
+import numbers # precompiled from /usr/lib/python2.7/numbers.pyc
+# /usr/lib/python2.7/threading.pyc matches /usr/lib/python2.7/threading.py
+import threading # precompiled from /usr/lib/python2.7/threading.pyc
+# /usr/lib/python2.7/locale.pyc matches /usr/lib/python2.7/locale.py
+import locale # precompiled from /usr/lib/python2.7/locale.pyc
+dlopen("/usr/lib/python2.7/lib-dynload/fcntl.so", 2);
+import fcntl # dynamically loaded from /usr/lib/python2.7/lib-dynload/fcntl.so
+# /usr/lib/python2.7/shutil.pyc matches /usr/lib/python2.7/shutil.py
+import shutil # precompiled from /usr/lib/python2.7/shutil.pyc
+# /usr/lib/python2.7/fnmatch.pyc matches /usr/lib/python2.7/fnmatch.py
+import fnmatch # precompiled from /usr/lib/python2.7/fnmatch.pyc
+import pwd # builtin
+dlopen("/usr/lib/python2.7/lib-dynload/grp.so", 2);
+import grp # dynamically loaded from /usr/lib/python2.7/lib-dynload/grp.so
+# /usr/lib/python2.7/site-packages/perf/_metadata.pyc matches /usr/lib/python2.7/site-packages/perf/_metadata.py
+import perf._metadata # precompiled from /usr/lib/python2.7/site-packages/perf/_metadata.pyc
+# /usr/lib/python2.7/site-packages/perf/_formatter.pyc matches /usr/lib/python2.7/site-packages/perf/_formatter.py
+import perf._formatter # precompiled from /usr/lib/python2.7/site-packages/perf/_formatter.pyc
+# /usr/lib/python2.7/site-packages/perf/_bench.pyc matches /usr/lib/python2.7/site-packages/perf/_bench.py
+import perf._bench # precompiled from /usr/lib/python2.7/site-packages/perf/_bench.pyc
+import json # directory /usr/lib/python2.7/json
+# /usr/lib/python2.7/json/__init__.pyc matches /usr/lib/python2.7/json/__init__.py
+import json # precompiled from /usr/lib/python2.7/json/__init__.pyc
+# /usr/lib/python2.7/json/decoder.pyc matches /usr/lib/python2.7/json/decoder.py
+import json.decoder # precompiled from /usr/lib/python2.7/json/decoder.pyc
+# /usr/lib/python2.7/struct.pyc matches /usr/lib/python2.7/struct.py
+import struct # precompiled from /usr/lib/python2.7/struct.pyc
+dlopen("/usr/lib/python2.7/lib-dynload/_struct.so", 2);
+import _struct # dynamically loaded from /usr/lib/python2.7/lib-dynload/_struct.so
+# /usr/lib/python2.7/json/scanner.pyc matches /usr/lib/python2.7/json/scanner.py
+import json.scanner # precompiled from /usr/lib/python2.7/json/scanner.pyc
+dlopen("/usr/lib/python2.7/lib-dynload/_json.so", 2);
+import _json # dynamically loaded from /usr/lib/python2.7/lib-dynload/_json.so
+# /usr/lib/python2.7/json/encoder.pyc matches /usr/lib/python2.7/json/encoder.py
+import json.encoder # precompiled from /usr/lib/python2.7/json/encoder.pyc
+# /usr/lib/python2.7/site-packages/perf/_runner.pyc matches /usr/lib/python2.7/site-packages/perf/_runner.py
+import perf._runner # precompiled from /usr/lib/python2.7/site-packages/perf/_runner.pyc
+# /usr/lib/python2.7/argparse.pyc matches /usr/lib/python2.7/argparse.py
+import argparse # precompiled from /usr/lib/python2.7/argparse.pyc
+# /usr/lib/python2.7/copy.pyc matches /usr/lib/python2.7/copy.py
+import copy # precompiled from /usr/lib/python2.7/copy.pyc
+# /usr/lib/python2.7/weakref.pyc matches /usr/lib/python2.7/weakref.py
+import weakref # precompiled from /usr/lib/python2.7/weakref.pyc
+# /usr/lib/python2.7/textwrap.pyc matches /usr/lib/python2.7/textwrap.py
+import textwrap # precompiled from /usr/lib/python2.7/textwrap.pyc
+# /usr/lib/python2.7/gettext.pyc matches /usr/lib/python2.7/gettext.py
+import gettext # precompiled from /usr/lib/python2.7/gettext.pyc
+# /usr/lib/python2.7/subprocess.pyc matches /usr/lib/python2.7/subprocess.py
+import subprocess # precompiled from /usr/lib/python2.7/subprocess.pyc
+import gc # builtin
+dlopen("/usr/lib/python2.7/lib-dynload/select.so", 2);
+import select # dynamically loaded from /usr/lib/python2.7/lib-dynload/select.so
+# /usr/lib/python2.7/pickle.pyc matches /usr/lib/python2.7/pickle.py
+import pickle # precompiled from /usr/lib/python2.7/pickle.pyc
+import marshal # builtin
+dlopen("/usr/lib/python2.7/lib-dynload/binascii.so", 2);
+import binascii # dynamically loaded from /usr/lib/python2.7/lib-dynload/binascii.so
+dlopen("/usr/lib/python2.7/lib-dynload/cStringIO.so", 2);
+import cStringIO # dynamically loaded from /usr/lib/python2.7/lib-dynload/cStringIO.so
+# /usr/lib/python2.7/site-packages/perf/_cli.pyc matches /usr/lib/python2.7/site-packages/perf/_cli.py
+import perf._cli # precompiled from /usr/lib/python2.7/site-packages/perf/_cli.pyc
+# /usr/lib/python2.7/site-packages/perf/_cpu_utils.pyc matches /usr/lib/python2.7/site-packages/perf/_cpu_utils.py
+import perf._cpu_utils # precompiled from /usr/lib/python2.7/site-packages/perf/_cpu_utils.pyc
+# /usr/lib/python2.7/site-packages/perf/_worker.pyc matches /usr/lib/python2.7/site-packages/perf/_worker.py
+import perf._worker # precompiled from /usr/lib/python2.7/site-packages/perf/_worker.pyc
+# /usr/lib/python2.7/site-packages/perf/_master.pyc matches /usr/lib/python2.7/site-packages/perf/_master.py
+import perf._master # precompiled from /usr/lib/python2.7/site-packages/perf/_master.pyc
+import pyaes # directory /usr/lib/python2.7/site-packages/pyaes
+# /usr/lib/python2.7/site-packages/pyaes/__init__.pyc matches /usr/lib/python2.7/site-packages/pyaes/__init__.py
+import pyaes # precompiled from /usr/lib/python2.7/site-packages/pyaes/__init__.pyc
+# /usr/lib/python2.7/site-packages/pyaes/aes.pyc matches /usr/lib/python2.7/site-packages/pyaes/aes.py
+import pyaes.aes # precompiled from /usr/lib/python2.7/site-packages/pyaes/aes.pyc
+# /usr/lib/python2.7/site-packages/pyaes/blockfeeder.pyc matches /usr/lib/python2.7/site-packages/pyaes/blockfeeder.py
+import pyaes.blockfeeder # precompiled from /usr/lib/python2.7/site-packages/pyaes/blockfeeder.pyc
+# /usr/lib/python2.7/site-packages/pyaes/util.pyc matches /usr/lib/python2.7/site-packages/pyaes/util.py
+import pyaes.util # precompiled from /usr/lib/python2.7/site-packages/pyaes/util.pyc
+.....................
+# /usr/lib/python2.7/_strptime.pyc matches /usr/lib/python2.7/_strptime.py
+import _strptime # precompiled from /usr/lib/python2.7/_strptime.pyc
+# /usr/lib/python2.7/calendar.pyc matches /usr/lib/python2.7/calendar.py
+import calendar # precompiled from /usr/lib/python2.7/calendar.pyc
+Total duration: 12.6 sec
+Start date: 2017-07-18 07:01:21
+End date: 2017-07-18 07:01:35
+Raw value minimum: 140 ms
+Raw value maximum: 159 ms
+
+Number of calibration run: 1
+Number of run with values: 20
+Total number of run: 21
+
+Number of warmup per run: 1
+Number of value per run: 3
+Loop iterations per value: 1
+Total number of values: 60
+
+Minimum:         140 ms
+Median +- MAD:   145 ms +- 3 ms
+Mean +- std dev: 146 ms +- 5 ms
+Maximum:         159 ms
+
+  0th percentile: 140 ms (-4% of the mean) -- minimum
+  5th percentile: 141 ms (-4% of the mean)
+ 25th percentile: 143 ms (-2% of the mean) -- Q1
+ 50th percentile: 145 ms (-1% of the mean) -- median
+ 75th percentile: 149 ms (+2% of the mean) -- Q3
+ 95th percentile: 154 ms (+5% of the mean)
+100th percentile: 159 ms (+9% of the mean) -- maximum
+
+Number of outlier (out of 133 ms..159 ms): 0
+
+crypto_pyaes: Mean +- std dev: 146 ms +- 5 ms
+# clear __builtin__._
+# clear sys.path
+# clear sys.argv
+# clear sys.ps1
+# clear sys.ps2
+# clear sys.exitfunc
+# clear sys.exc_type
+# clear sys.exc_value
+# clear sys.exc_traceback
+# clear sys.last_type
+# clear sys.last_value
+# clear sys.last_traceback
+# clear sys.path_hooks
+# clear sys.path_importer_cache
+# clear sys.meta_path
+# clear sys.flags
+# clear sys.float_info
+# restore sys.stdin
+# restore sys.stdout
+# restore sys.stderr
+# cleanup __main__
+# cleanup[1] sysconfig
+# cleanup[1] gettext
+# cleanup[1] _json
+# cleanup[1] zipimport
+# cleanup[1] decimal
+# cleanup[1] threading
+# cleanup[1] pyaes
+# cleanup[1] cStringIO
+# cleanup[1] abc
+# cleanup[1] exceptions
+# cleanup[1] _functools
+# cleanup[1] thread
+# cleanup[1] StringIO
+# cleanup[1] __future__
+# cleanup[1] _collections
+# cleanup[1] _heapq
+# cleanup[1] sre_constants
+# cleanup[1] _warnings
+# cleanup[1] fractions
+# cleanup[1] _codecs
+# cleanup[1] pwd
+# cleanup[1] _sysconfigdata
+# cleanup[1] _struct
+# cleanup[1] pyaes.util
+# cleanup[1] keyword
+# cleanup[1] posix
+# cleanup[1] site
+# cleanup[1] numbers
+# cleanup[1] shutil
+# cleanup[1] strop
+# cleanup[1] grp
+# cleanup[1] pyaes.aes
+# cleanup[1] _weakref
+# cleanup[1] _weakrefset
+# cleanup[1] pyaes.blockfeeder
+# cleanup[1] fnmatch
+# cleanup[2] heapq
+# cleanup[2] functools
+# cleanup[2] datetime
+# cleanup[2] gc
+# cleanup[2] perf._master
+# cleanup[2] struct
+# cleanup[2] perf._metadata
+# cleanup[2] platform
+# cleanup[2] collections
+# cleanup[2] string
+# cleanup[2] encodings.utf_8
+# cleanup[2] json.encoder
+# cleanup[2] subprocess
+# cleanup[2] signal
+# cleanup[2] locale
+# cleanup[2] perf._formatter
+# cleanup[2] encodings
+# cleanup[2] calendar
+# cleanup[2] perf._cli
+# cleanup[2] re
+# cleanup[2] math
+# cleanup[2] fcntl
+# cleanup[2] UserDict
+# cleanup[2] json.scanner
+# cleanup[2] codecs
+# cleanup[2] perf
+# cleanup[2] _locale
+# cleanup[2] pickle
+# cleanup[2] traceback
+# cleanup[2] weakref
+# cleanup[2] itertools
+# cleanup[2] os
+# cleanup[2] marshal
+# cleanup[2] six.moves
+# cleanup[2] _sre
+# cleanup[2] operator
+# cleanup[2] select
+# cleanup[2] statistics
+# cleanup[2] posixpath
+# cleanup[2] errno
+# cleanup[2] binascii
+# cleanup[2] perf._worker
+# cleanup[2] json
+# cleanup[2] os.path
+# cleanup[2] perf._cpu_utils
+# cleanup[2] copy
+# cleanup[2] encodings.aliases
+# cleanup[2] sre_parse
+# cleanup[2] perf._utils
+# cleanup[2] json.decoder
+# cleanup[2] copy_reg
+# cleanup[2] sre_compile
+# cleanup[2] contextlib
+# cleanup[2] perf._bench
+# cleanup[2] linecache
+# cleanup[2] six
+# cleanup[2] _abcoll
+# cleanup[2] genericpath
+# cleanup[2] stat
+# cleanup[2] warnings
+# cleanup[2] perf._runner
+# cleanup[2] textwrap
+# cleanup[2] types
+# cleanup[2] argparse
+# cleanup[2] _strptime
+# cleanup[2] time
+# cleanup sys
+# cleanup __builtin__
+# cleanup ints: 2362 unfreed ints
+# cleanup floats: 8 unfreed floats
+

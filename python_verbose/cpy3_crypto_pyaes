@@ -1,0 +1,633 @@
+import _frozen_importlib # frozen
+import _imp # builtin
+import sys # builtin
+import '_warnings' # <class '_frozen_importlib.BuiltinImporter'>
+import '_thread' # <class '_frozen_importlib.BuiltinImporter'>
+import '_weakref' # <class '_frozen_importlib.BuiltinImporter'>
+import '_frozen_importlib_external' # <class '_frozen_importlib.FrozenImporter'>
+import '_io' # <class '_frozen_importlib.BuiltinImporter'>
+import 'marshal' # <class '_frozen_importlib.BuiltinImporter'>
+import 'posix' # <class '_frozen_importlib.BuiltinImporter'>
+import _thread # previously loaded ('_thread')
+import '_thread' # <class '_frozen_importlib.BuiltinImporter'>
+import _weakref # previously loaded ('_weakref')
+import '_weakref' # <class '_frozen_importlib.BuiltinImporter'>
+# installing zipimport hook
+import 'zipimport' # <class '_frozen_importlib.BuiltinImporter'>
+# installed zipimport hook
+# /usr/lib/python3.6/encodings/__pycache__/__init__.cpython-36.pyc matches /usr/lib/python3.6/encodings/__init__.py
+# code object from '/usr/lib/python3.6/encodings/__pycache__/__init__.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/codecs.cpython-36.pyc matches /usr/lib/python3.6/codecs.py
+# code object from '/usr/lib/python3.6/__pycache__/codecs.cpython-36.pyc'
+import '_codecs' # <class '_frozen_importlib.BuiltinImporter'>
+import 'codecs' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7051d4080>
+# /usr/lib/python3.6/encodings/__pycache__/aliases.cpython-36.pyc matches /usr/lib/python3.6/encodings/aliases.py
+# code object from '/usr/lib/python3.6/encodings/__pycache__/aliases.cpython-36.pyc'
+import 'encodings.aliases' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7051e1a20>
+import 'encodings' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe70524aba8>
+# /usr/lib/python3.6/encodings/__pycache__/utf_8.cpython-36.pyc matches /usr/lib/python3.6/encodings/utf_8.py
+# code object from '/usr/lib/python3.6/encodings/__pycache__/utf_8.cpython-36.pyc'
+import 'encodings.utf_8' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7051ef828>
+import '_signal' # <class '_frozen_importlib.BuiltinImporter'>
+# /usr/lib/python3.6/encodings/__pycache__/latin_1.cpython-36.pyc matches /usr/lib/python3.6/encodings/latin_1.py
+# code object from '/usr/lib/python3.6/encodings/__pycache__/latin_1.cpython-36.pyc'
+import 'encodings.latin_1' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7051f5358>
+# /usr/lib/python3.6/__pycache__/io.cpython-36.pyc matches /usr/lib/python3.6/io.py
+# code object from '/usr/lib/python3.6/__pycache__/io.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/abc.cpython-36.pyc matches /usr/lib/python3.6/abc.py
+# code object from '/usr/lib/python3.6/__pycache__/abc.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/_weakrefset.cpython-36.pyc matches /usr/lib/python3.6/_weakrefset.py
+# code object from '/usr/lib/python3.6/__pycache__/_weakrefset.cpython-36.pyc'
+import '_weakrefset' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7051fb2b0>
+import 'abc' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7051f5940>
+import 'io' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7051f5588>
+# /usr/lib/python3.6/__pycache__/site.cpython-36.pyc matches /usr/lib/python3.6/site.py
+# code object from '/usr/lib/python3.6/__pycache__/site.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/os.cpython-36.pyc matches /usr/lib/python3.6/os.py
+# code object from '/usr/lib/python3.6/__pycache__/os.cpython-36.pyc'
+import 'errno' # <class '_frozen_importlib.BuiltinImporter'>
+# /usr/lib/python3.6/__pycache__/stat.cpython-36.pyc matches /usr/lib/python3.6/stat.py
+# code object from '/usr/lib/python3.6/__pycache__/stat.cpython-36.pyc'
+import '_stat' # <class '_frozen_importlib.BuiltinImporter'>
+import 'stat' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe70519d5c0>
+# /usr/lib/python3.6/__pycache__/posixpath.cpython-36.pyc matches /usr/lib/python3.6/posixpath.py
+# code object from '/usr/lib/python3.6/__pycache__/posixpath.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/genericpath.cpython-36.pyc matches /usr/lib/python3.6/genericpath.py
+# code object from '/usr/lib/python3.6/__pycache__/genericpath.cpython-36.pyc'
+import 'genericpath' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7051a2f98>
+import 'posixpath' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe70519dc88>
+# /usr/lib/python3.6/__pycache__/_collections_abc.cpython-36.pyc matches /usr/lib/python3.6/_collections_abc.py
+# code object from '/usr/lib/python3.6/__pycache__/_collections_abc.cpython-36.pyc'
+import '_collections_abc' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7051ab630>
+import 'os' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe70518deb8>
+# /usr/lib/python3.6/__pycache__/_sitebuiltins.cpython-36.pyc matches /usr/lib/python3.6/_sitebuiltins.py
+# code object from '/usr/lib/python3.6/__pycache__/_sitebuiltins.cpython-36.pyc'
+import '_sitebuiltins' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7051912e8>
+# /usr/lib/python3.6/__pycache__/sysconfig.cpython-36.pyc matches /usr/lib/python3.6/sysconfig.py
+# code object from '/usr/lib/python3.6/__pycache__/sysconfig.cpython-36.pyc'
+import 'sysconfig' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe705161a90>
+# /usr/lib/python3.6/__pycache__/_sysconfigdata_m_linux_x86_64-linux-gnu.cpython-36.pyc matches /usr/lib/python3.6/_sysconfigdata_m_linux_x86_64-linux-gnu.py
+# code object from '/usr/lib/python3.6/__pycache__/_sysconfigdata_m_linux_x86_64-linux-gnu.cpython-36.pyc'
+import '_sysconfigdata_m_linux_x86_64-linux-gnu' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe705174358>
+import 'site' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7051fdbe0>
+Python 3.6.1 (default, Mar 27 2017, 00:27:06) 
+[GCC 6.3.1 20170306] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+# /usr/lib/python3.6/site-packages/perf/__pycache__/__init__.cpython-36.pyc matches /usr/lib/python3.6/site-packages/perf/__init__.py
+# code object from '/usr/lib/python3.6/site-packages/perf/__pycache__/__init__.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/__future__.cpython-36.pyc matches /usr/lib/python3.6/__future__.py
+# code object from '/usr/lib/python3.6/__pycache__/__future__.cpython-36.pyc'
+import '__future__' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe70518a390>
+import 'time' # <class '_frozen_importlib.BuiltinImporter'>
+# /usr/lib/python3.6/site-packages/perf/__pycache__/_utils.cpython-36.pyc matches /usr/lib/python3.6/site-packages/perf/_utils.py
+# code object from '/usr/lib/python3.6/site-packages/perf/__pycache__/_utils.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/contextlib.cpython-36.pyc matches /usr/lib/python3.6/contextlib.py
+# code object from '/usr/lib/python3.6/__pycache__/contextlib.cpython-36.pyc'
+# /usr/lib/python3.6/collections/__pycache__/__init__.cpython-36.pyc matches /usr/lib/python3.6/collections/__init__.py
+# code object from '/usr/lib/python3.6/collections/__pycache__/__init__.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/operator.cpython-36.pyc matches /usr/lib/python3.6/operator.py
+# code object from '/usr/lib/python3.6/__pycache__/operator.cpython-36.pyc'
+import '_operator' # <class '_frozen_importlib.BuiltinImporter'>
+import 'operator' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe70513c3c8>
+# /usr/lib/python3.6/__pycache__/keyword.cpython-36.pyc matches /usr/lib/python3.6/keyword.py
+# code object from '/usr/lib/python3.6/__pycache__/keyword.cpython-36.pyc'
+import 'keyword' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7051456a0>
+# /usr/lib/python3.6/__pycache__/heapq.cpython-36.pyc matches /usr/lib/python3.6/heapq.py
+# code object from '/usr/lib/python3.6/__pycache__/heapq.cpython-36.pyc'
+# extension module '_heapq' loaded from '/usr/lib/python3.6/lib-dynload/_heapq.cpython-36m-x86_64-linux-gnu.so'
+# extension module '_heapq' executed from '/usr/lib/python3.6/lib-dynload/_heapq.cpython-36m-x86_64-linux-gnu.so'
+import '_heapq' # <_frozen_importlib_external.ExtensionFileLoader object at 0x7fe7050cf390>
+import 'heapq' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe705145e80>
+import 'itertools' # <class '_frozen_importlib.BuiltinImporter'>
+# /usr/lib/python3.6/__pycache__/reprlib.cpython-36.pyc matches /usr/lib/python3.6/reprlib.py
+# code object from '/usr/lib/python3.6/__pycache__/reprlib.cpython-36.pyc'
+import 'reprlib' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe705140a58>
+import '_collections' # <class '_frozen_importlib.BuiltinImporter'>
+import 'collections' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe70511ea58>
+# /usr/lib/python3.6/__pycache__/functools.cpython-36.pyc matches /usr/lib/python3.6/functools.py
+# code object from '/usr/lib/python3.6/__pycache__/functools.cpython-36.pyc'
+import '_functools' # <class '_frozen_importlib.BuiltinImporter'>
+# /usr/lib/python3.6/__pycache__/types.cpython-36.pyc matches /usr/lib/python3.6/types.py
+# code object from '/usr/lib/python3.6/__pycache__/types.cpython-36.pyc'
+# /usr/lib/python3.6/collections/__pycache__/abc.cpython-36.pyc matches /usr/lib/python3.6/collections/abc.py
+# code object from '/usr/lib/python3.6/collections/__pycache__/abc.cpython-36.pyc'
+import 'collections.abc' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7050f1860>
+import 'types' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7050e9b00>
+# /usr/lib/python3.6/__pycache__/weakref.cpython-36.pyc matches /usr/lib/python3.6/weakref.py
+# code object from '/usr/lib/python3.6/__pycache__/weakref.cpython-36.pyc'
+import 'weakref' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7050e9c88>
+import 'functools' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe70511ee10>
+import 'contextlib' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7051178d0>
+# /usr/lib/python3.6/__pycache__/datetime.cpython-36.pyc matches /usr/lib/python3.6/datetime.py
+# code object from '/usr/lib/python3.6/__pycache__/datetime.cpython-36.pyc'
+# extension module 'math' loaded from '/usr/lib/python3.6/lib-dynload/math.cpython-36m-x86_64-linux-gnu.so'
+# extension module 'math' executed from '/usr/lib/python3.6/lib-dynload/math.cpython-36m-x86_64-linux-gnu.so'
+import 'math' # <_frozen_importlib_external.ExtensionFileLoader object at 0x7fe704ea7390>
+# extension module '_datetime' loaded from '/usr/lib/python3.6/lib-dynload/_datetime.cpython-36m-x86_64-linux-gnu.so'
+# extension module '_datetime' executed from '/usr/lib/python3.6/lib-dynload/_datetime.cpython-36m-x86_64-linux-gnu.so'
+import '_datetime' # <_frozen_importlib_external.ExtensionFileLoader object at 0x7fe704eb4278>
+import 'datetime' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe705107550>
+# /usr/lib/python3.6/__pycache__/platform.cpython-36.pyc matches /usr/lib/python3.6/platform.py
+# code object from '/usr/lib/python3.6/__pycache__/platform.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/re.cpython-36.pyc matches /usr/lib/python3.6/re.py
+# code object from '/usr/lib/python3.6/__pycache__/re.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/enum.cpython-36.pyc matches /usr/lib/python3.6/enum.py
+# code object from '/usr/lib/python3.6/__pycache__/enum.cpython-36.pyc'
+import 'enum' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe704e91a58>
+# /usr/lib/python3.6/__pycache__/sre_compile.cpython-36.pyc matches /usr/lib/python3.6/sre_compile.py
+# code object from '/usr/lib/python3.6/__pycache__/sre_compile.cpython-36.pyc'
+import '_sre' # <class '_frozen_importlib.BuiltinImporter'>
+# /usr/lib/python3.6/__pycache__/sre_parse.cpython-36.pyc matches /usr/lib/python3.6/sre_parse.py
+# code object from '/usr/lib/python3.6/__pycache__/sre_parse.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/sre_constants.cpython-36.pyc matches /usr/lib/python3.6/sre_constants.py
+# code object from '/usr/lib/python3.6/__pycache__/sre_constants.cpython-36.pyc'
+import 'sre_constants' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe704ec2748>
+import 'sre_parse' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe704e9d2e8>
+import 'sre_compile' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe704e8c9b0>
+import '_locale' # <class '_frozen_importlib.BuiltinImporter'>
+# /usr/lib/python3.6/__pycache__/copyreg.cpython-36.pyc matches /usr/lib/python3.6/copyreg.py
+# code object from '/usr/lib/python3.6/__pycache__/copyreg.cpython-36.pyc'
+import 'copyreg' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe704a2a2e8>
+import 're' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe70513dd30>
+# /usr/lib/python3.6/__pycache__/subprocess.cpython-36.pyc matches /usr/lib/python3.6/subprocess.py
+# code object from '/usr/lib/python3.6/__pycache__/subprocess.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/signal.cpython-36.pyc matches /usr/lib/python3.6/signal.py
+# code object from '/usr/lib/python3.6/__pycache__/signal.cpython-36.pyc'
+import 'signal' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe704a430f0>
+# /usr/lib/python3.6/__pycache__/warnings.cpython-36.pyc matches /usr/lib/python3.6/warnings.py
+# code object from '/usr/lib/python3.6/__pycache__/warnings.cpython-36.pyc'
+import 'warnings' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe704a43198>
+# extension module '_posixsubprocess' loaded from '/usr/lib/python3.6/lib-dynload/_posixsubprocess.cpython-36m-x86_64-linux-gnu.so'
+# extension module '_posixsubprocess' executed from '/usr/lib/python3.6/lib-dynload/_posixsubprocess.cpython-36m-x86_64-linux-gnu.so'
+import '_posixsubprocess' # <_frozen_importlib_external.ExtensionFileLoader object at 0x7fe704a43c50>
+# extension module 'select' loaded from '/usr/lib/python3.6/lib-dynload/select.cpython-36m-x86_64-linux-gnu.so'
+# extension module 'select' executed from '/usr/lib/python3.6/lib-dynload/select.cpython-36m-x86_64-linux-gnu.so'
+import 'select' # <_frozen_importlib_external.ExtensionFileLoader object at 0x7fe704a43f60>
+# /usr/lib/python3.6/__pycache__/selectors.cpython-36.pyc matches /usr/lib/python3.6/selectors.py
+# code object from '/usr/lib/python3.6/__pycache__/selectors.cpython-36.pyc'
+import 'selectors' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe704a52320>
+# /usr/lib/python3.6/__pycache__/threading.cpython-36.pyc matches /usr/lib/python3.6/threading.py
+# code object from '/usr/lib/python3.6/__pycache__/threading.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/traceback.cpython-36.pyc matches /usr/lib/python3.6/traceback.py
+# code object from '/usr/lib/python3.6/__pycache__/traceback.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/linecache.cpython-36.pyc matches /usr/lib/python3.6/linecache.py
+# code object from '/usr/lib/python3.6/__pycache__/linecache.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/tokenize.cpython-36.pyc matches /usr/lib/python3.6/tokenize.py
+# code object from '/usr/lib/python3.6/__pycache__/tokenize.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/token.cpython-36.pyc matches /usr/lib/python3.6/token.py
+# code object from '/usr/lib/python3.6/__pycache__/token.cpython-36.pyc'
+import 'token' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7045b3908>
+import 'tokenize' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7045ac0f0>
+import 'linecache' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7045a2da0>
+import 'traceback' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe704599cc0>
+import 'threading' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe704a588d0>
+import 'subprocess' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe704a2a5f8>
+import 'platform' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe705107b70>
+# /usr/lib/python3.6/site-packages/__pycache__/six.cpython-36.pyc matches /usr/lib/python3.6/site-packages/six.py
+# code object from '/usr/lib/python3.6/site-packages/__pycache__/six.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/struct.cpython-36.pyc matches /usr/lib/python3.6/struct.py
+# code object from '/usr/lib/python3.6/__pycache__/struct.cpython-36.pyc'
+# extension module '_struct' loaded from '/usr/lib/python3.6/lib-dynload/_struct.cpython-36m-x86_64-linux-gnu.so'
+# extension module '_struct' executed from '/usr/lib/python3.6/lib-dynload/_struct.cpython-36m-x86_64-linux-gnu.so'
+import '_struct' # <_frozen_importlib_external.ExtensionFileLoader object at 0x7fe7045655c0>
+import 'struct' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe704565320>
+import 'six' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe704a35978>
+# /usr/lib/python3.6/__pycache__/statistics.cpython-36.pyc matches /usr/lib/python3.6/statistics.py
+# code object from '/usr/lib/python3.6/__pycache__/statistics.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/decimal.cpython-36.pyc matches /usr/lib/python3.6/decimal.py
+# code object from '/usr/lib/python3.6/__pycache__/decimal.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/_pydecimal.cpython-36.pyc matches /usr/lib/python3.6/_pydecimal.py
+# code object from '/usr/lib/python3.6/__pycache__/_pydecimal.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/numbers.cpython-36.pyc matches /usr/lib/python3.6/numbers.py
+# code object from '/usr/lib/python3.6/__pycache__/numbers.cpython-36.pyc'
+import 'numbers' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe704310860>
+# /usr/lib/python3.6/__pycache__/locale.cpython-36.pyc matches /usr/lib/python3.6/locale.py
+# code object from '/usr/lib/python3.6/__pycache__/locale.cpython-36.pyc'
+import 'locale' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe704326dd8>
+import '_pydecimal' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7045547f0>
+import 'decimal' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7045542e8>
+# /usr/lib/python3.6/__pycache__/fractions.cpython-36.pyc matches /usr/lib/python3.6/fractions.py
+# code object from '/usr/lib/python3.6/__pycache__/fractions.cpython-36.pyc'
+import 'fractions' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe704554da0>
+# /usr/lib/python3.6/__pycache__/bisect.cpython-36.pyc matches /usr/lib/python3.6/bisect.py
+# code object from '/usr/lib/python3.6/__pycache__/bisect.cpython-36.pyc'
+# extension module '_bisect' loaded from '/usr/lib/python3.6/lib-dynload/_bisect.cpython-36m-x86_64-linux-gnu.so'
+# extension module '_bisect' executed from '/usr/lib/python3.6/lib-dynload/_bisect.cpython-36m-x86_64-linux-gnu.so'
+import '_bisect' # <_frozen_importlib_external.ExtensionFileLoader object at 0x7fe7042df4a8>
+import 'bisect' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7042df278>
+import 'statistics' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7045bf470>
+# /usr/lib/python3.6/__pycache__/shutil.cpython-36.pyc matches /usr/lib/python3.6/shutil.py
+# code object from '/usr/lib/python3.6/__pycache__/shutil.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/fnmatch.cpython-36.pyc matches /usr/lib/python3.6/fnmatch.py
+# code object from '/usr/lib/python3.6/__pycache__/fnmatch.cpython-36.pyc'
+import 'fnmatch' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7042e9d68>
+# extension module 'zlib' loaded from '/usr/lib/python3.6/lib-dynload/zlib.cpython-36m-x86_64-linux-gnu.so'
+# extension module 'zlib' executed from '/usr/lib/python3.6/lib-dynload/zlib.cpython-36m-x86_64-linux-gnu.so'
+import 'zlib' # <_frozen_importlib_external.ExtensionFileLoader object at 0x7fe7042ee128>
+# /usr/lib/python3.6/__pycache__/bz2.cpython-36.pyc matches /usr/lib/python3.6/bz2.py
+# code object from '/usr/lib/python3.6/__pycache__/bz2.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/_compression.cpython-36.pyc matches /usr/lib/python3.6/_compression.py
+# code object from '/usr/lib/python3.6/__pycache__/_compression.cpython-36.pyc'
+import '_compression' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7042eed30>
+# extension module '_bz2' loaded from '/usr/lib/python3.6/lib-dynload/_bz2.cpython-36m-x86_64-linux-gnu.so'
+# extension module '_bz2' executed from '/usr/lib/python3.6/lib-dynload/_bz2.cpython-36m-x86_64-linux-gnu.so'
+import '_bz2' # <_frozen_importlib_external.ExtensionFileLoader object at 0x7fe7042fa710>
+import 'bz2' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7042ee400>
+# /usr/lib/python3.6/__pycache__/lzma.cpython-36.pyc matches /usr/lib/python3.6/lzma.py
+# code object from '/usr/lib/python3.6/__pycache__/lzma.cpython-36.pyc'
+# extension module '_lzma' loaded from '/usr/lib/python3.6/lib-dynload/_lzma.cpython-36m-x86_64-linux-gnu.so'
+# extension module '_lzma' executed from '/usr/lib/python3.6/lib-dynload/_lzma.cpython-36m-x86_64-linux-gnu.so'
+import '_lzma' # <_frozen_importlib_external.ExtensionFileLoader object at 0x7fe70384b320>
+import 'lzma' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7042fa8d0>
+import 'pwd' # <class '_frozen_importlib.BuiltinImporter'>
+# extension module 'grp' loaded from '/usr/lib/python3.6/lib-dynload/grp.cpython-36m-x86_64-linux-gnu.so'
+# extension module 'grp' executed from '/usr/lib/python3.6/lib-dynload/grp.cpython-36m-x86_64-linux-gnu.so'
+import 'grp' # <_frozen_importlib_external.ExtensionFileLoader object at 0x7fe70384b668>
+import 'shutil' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7042df320>
+import 'perf._utils' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe70518af28>
+# /usr/lib/python3.6/site-packages/perf/__pycache__/_metadata.cpython-36.pyc matches /usr/lib/python3.6/site-packages/perf/_metadata.py
+# code object from '/usr/lib/python3.6/site-packages/perf/__pycache__/_metadata.cpython-36.pyc'
+# /usr/lib/python3.6/site-packages/perf/__pycache__/_formatter.cpython-36.pyc matches /usr/lib/python3.6/site-packages/perf/_formatter.py
+# code object from '/usr/lib/python3.6/site-packages/perf/__pycache__/_formatter.cpython-36.pyc'
+import 'perf._formatter' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7038591d0>
+import 'perf._metadata' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7051176d8>
+# /usr/lib/python3.6/site-packages/perf/__pycache__/_bench.cpython-36.pyc matches /usr/lib/python3.6/site-packages/perf/_bench.py
+# code object from '/usr/lib/python3.6/site-packages/perf/__pycache__/_bench.cpython-36.pyc'
+# /usr/lib/python3.6/json/__pycache__/__init__.cpython-36.pyc matches /usr/lib/python3.6/json/__init__.py
+# code object from '/usr/lib/python3.6/json/__pycache__/__init__.cpython-36.pyc'
+# /usr/lib/python3.6/json/__pycache__/decoder.cpython-36.pyc matches /usr/lib/python3.6/json/decoder.py
+# code object from '/usr/lib/python3.6/json/__pycache__/decoder.cpython-36.pyc'
+# /usr/lib/python3.6/json/__pycache__/scanner.cpython-36.pyc matches /usr/lib/python3.6/json/scanner.py
+# code object from '/usr/lib/python3.6/json/__pycache__/scanner.cpython-36.pyc'
+# extension module '_json' loaded from '/usr/lib/python3.6/lib-dynload/_json.cpython-36m-x86_64-linux-gnu.so'
+# extension module '_json' executed from '/usr/lib/python3.6/lib-dynload/_json.cpython-36m-x86_64-linux-gnu.so'
+import '_json' # <_frozen_importlib_external.ExtensionFileLoader object at 0x7fe703877b70>
+import 'json.scanner' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe703877898>
+import 'json.decoder' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe7038770b8>
+# /usr/lib/python3.6/json/__pycache__/encoder.cpython-36.pyc matches /usr/lib/python3.6/json/encoder.py
+# code object from '/usr/lib/python3.6/json/__pycache__/encoder.cpython-36.pyc'
+import 'json.encoder' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe703877710>
+import 'json' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe70386bcc0>
+import 'perf._bench' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe703859b38>
+# /usr/lib/python3.6/site-packages/perf/__pycache__/_runner.cpython-36.pyc matches /usr/lib/python3.6/site-packages/perf/_runner.py
+# code object from '/usr/lib/python3.6/site-packages/perf/__pycache__/_runner.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/argparse.cpython-36.pyc matches /usr/lib/python3.6/argparse.py
+# code object from '/usr/lib/python3.6/__pycache__/argparse.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/copy.cpython-36.pyc matches /usr/lib/python3.6/copy.py
+# code object from '/usr/lib/python3.6/__pycache__/copy.cpython-36.pyc'
+import 'copy' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe702ff4198>
+# /usr/lib/python3.6/__pycache__/textwrap.cpython-36.pyc matches /usr/lib/python3.6/textwrap.py
+# code object from '/usr/lib/python3.6/__pycache__/textwrap.cpython-36.pyc'
+import 'textwrap' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe702ff45f8>
+# /usr/lib/python3.6/__pycache__/gettext.cpython-36.pyc matches /usr/lib/python3.6/gettext.py
+# code object from '/usr/lib/python3.6/__pycache__/gettext.cpython-36.pyc'
+import 'gettext' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe702ff4748>
+import 'argparse' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe702fc8160>
+# /usr/lib/python3.6/site-packages/perf/__pycache__/_cli.cpython-36.pyc matches /usr/lib/python3.6/site-packages/perf/_cli.py
+# code object from '/usr/lib/python3.6/site-packages/perf/__pycache__/_cli.cpython-36.pyc'
+import 'perf._cli' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe702f83ef0>
+# /usr/lib/python3.6/site-packages/perf/__pycache__/_cpu_utils.cpython-36.pyc matches /usr/lib/python3.6/site-packages/perf/_cpu_utils.py
+# code object from '/usr/lib/python3.6/site-packages/perf/__pycache__/_cpu_utils.cpython-36.pyc'
+import 'perf._cpu_utils' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe702f8bc50>
+# /usr/lib/python3.6/site-packages/perf/__pycache__/_worker.cpython-36.pyc matches /usr/lib/python3.6/site-packages/perf/_worker.py
+# code object from '/usr/lib/python3.6/site-packages/perf/__pycache__/_worker.cpython-36.pyc'
+import 'perf._worker' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe702f8bf98>
+# /usr/lib/python3.6/site-packages/perf/__pycache__/_master.cpython-36.pyc matches /usr/lib/python3.6/site-packages/perf/_master.py
+# code object from '/usr/lib/python3.6/site-packages/perf/__pycache__/_master.cpython-36.pyc'
+import 'perf._master' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe702f965f8>
+import 'perf._runner' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe703881f28>
+import 'perf' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe70518a198>
+# /usr/lib/python3.6/site-packages/pyaes/__pycache__/__init__.cpython-36.pyc matches /usr/lib/python3.6/site-packages/pyaes/__init__.py
+# code object from '/usr/lib/python3.6/site-packages/pyaes/__pycache__/__init__.cpython-36.pyc'
+# /usr/lib/python3.6/site-packages/pyaes/__pycache__/aes.cpython-36.pyc matches /usr/lib/python3.6/site-packages/pyaes/aes.py
+# code object from '/usr/lib/python3.6/site-packages/pyaes/__pycache__/aes.cpython-36.pyc'
+import 'pyaes.aes' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe702f96a90>
+# /usr/lib/python3.6/site-packages/pyaes/__pycache__/blockfeeder.cpython-36.pyc matches /usr/lib/python3.6/site-packages/pyaes/blockfeeder.py
+# code object from '/usr/lib/python3.6/site-packages/pyaes/__pycache__/blockfeeder.cpython-36.pyc'
+# /usr/lib/python3.6/site-packages/pyaes/__pycache__/util.cpython-36.pyc matches /usr/lib/python3.6/site-packages/pyaes/util.py
+# code object from '/usr/lib/python3.6/site-packages/pyaes/__pycache__/util.cpython-36.pyc'
+import 'pyaes.util' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe702fbb080>
+import 'pyaes.blockfeeder' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe702f96b00>
+import 'pyaes' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe702fc80b8>
+.....................
+# /usr/lib/python3.6/__pycache__/_strptime.cpython-36.pyc matches /usr/lib/python3.6/_strptime.py
+# code object from '/usr/lib/python3.6/__pycache__/_strptime.cpython-36.pyc'
+# /usr/lib/python3.6/__pycache__/calendar.cpython-36.pyc matches /usr/lib/python3.6/calendar.py
+# code object from '/usr/lib/python3.6/__pycache__/calendar.cpython-36.pyc'
+import 'calendar' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe702f687b8>
+import '_strptime' # <_frozen_importlib_external.SourceFileLoader object at 0x7fe702f49f98>
+Total duration: 16.5 sec
+Start date: 2017-07-18 07:01:54
+End date: 2017-07-18 07:02:12
+Raw value minimum: 186 ms
+Raw value maximum: 209 ms
+
+Number of calibration run: 1
+Number of run with values: 20
+Total number of run: 21
+
+Number of warmup per run: 1
+Number of value per run: 3
+Loop iterations per value: 1
+Total number of values: 60
+
+Minimum:         186 ms
+Median +- MAD:   192 ms +- 5 ms
+Mean +- std dev: 194 ms +- 6 ms
+Maximum:         209 ms
+
+  0th percentile: 186 ms (-4% of the mean) -- minimum
+  5th percentile: 187 ms (-4% of the mean)
+ 25th percentile: 189 ms (-3% of the mean) -- Q1
+ 50th percentile: 192 ms (-1% of the mean) -- median
+ 75th percentile: 198 ms (+2% of the mean) -- Q3
+ 95th percentile: 202 ms (+4% of the mean)
+100th percentile: 209 ms (+8% of the mean) -- maximum
+
+Number of outlier (out of 174 ms..213 ms): 0
+
+crypto_pyaes: Mean +- std dev: 194 ms +- 6 ms
+# clear builtins._
+# clear sys.path
+# clear sys.argv
+# clear sys.ps1
+# clear sys.ps2
+# clear sys.last_type
+# clear sys.last_value
+# clear sys.last_traceback
+# clear sys.path_hooks
+# clear sys.path_importer_cache
+# clear sys.meta_path
+# clear sys.__interactivehook__
+# clear sys.flags
+# clear sys.float_info
+# restore sys.stdin
+# restore sys.stdout
+# restore sys.stderr
+# cleanup[2] removing builtins
+# cleanup[2] removing sys
+# cleanup[2] removing _frozen_importlib
+# cleanup[2] removing _imp
+# cleanup[2] removing _warnings
+# cleanup[2] removing _thread
+# cleanup[2] removing _weakref
+# cleanup[2] removing _frozen_importlib_external
+# cleanup[2] removing _io
+# cleanup[2] removing marshal
+# cleanup[2] removing posix
+# cleanup[2] removing zipimport
+# cleanup[2] removing encodings
+# cleanup[2] removing codecs
+# cleanup[2] removing _codecs
+# cleanup[2] removing encodings.aliases
+# cleanup[2] removing encodings.utf_8
+# cleanup[2] removing _signal
+# cleanup[2] removing __main__
+# destroy __main__
+# cleanup[2] removing encodings.latin_1
+# cleanup[2] removing io
+# cleanup[2] removing abc
+# cleanup[2] removing _weakrefset
+# destroy _weakrefset
+# cleanup[2] removing site
+# destroy site
+# cleanup[2] removing os
+# cleanup[2] removing errno
+# cleanup[2] removing stat
+# cleanup[2] removing _stat
+# cleanup[2] removing posixpath
+# cleanup[2] removing genericpath
+# cleanup[2] removing os.path
+# cleanup[2] removing _collections_abc
+# cleanup[2] removing _sitebuiltins
+# cleanup[2] removing sysconfig
+# destroy sysconfig
+# cleanup[2] removing _sysconfigdata_m_linux_x86_64-linux-gnu
+# destroy _sysconfigdata_m_linux_x86_64-linux-gnu
+# cleanup[2] removing perf
+# cleanup[2] removing __future__
+# destroy __future__
+# cleanup[2] removing time
+# cleanup[2] removing perf._utils
+# cleanup[2] removing contextlib
+# cleanup[2] removing collections
+# cleanup[2] removing operator
+# cleanup[2] removing _operator
+# cleanup[2] removing keyword
+# destroy keyword
+# cleanup[2] removing heapq
+# cleanup[2] removing _heapq
+# cleanup[2] removing itertools
+# cleanup[2] removing reprlib
+# destroy reprlib
+# cleanup[2] removing _collections
+# cleanup[2] removing functools
+# cleanup[2] removing _functools
+# cleanup[2] removing types
+# cleanup[2] removing collections.abc
+# cleanup[2] removing weakref
+# destroy weakref
+# cleanup[2] removing datetime
+# cleanup[2] removing math
+# cleanup[2] removing _datetime
+# cleanup[2] removing platform
+# cleanup[2] removing re
+# cleanup[2] removing enum
+# cleanup[2] removing sre_compile
+# cleanup[2] removing _sre
+# cleanup[2] removing sre_parse
+# cleanup[2] removing sre_constants
+# destroy sre_constants
+# cleanup[2] removing _locale
+# cleanup[2] removing copyreg
+# cleanup[2] removing subprocess
+# cleanup[2] removing signal
+# cleanup[2] removing warnings
+# cleanup[2] removing _posixsubprocess
+# cleanup[2] removing select
+# cleanup[2] removing selectors
+# cleanup[2] removing threading
+# cleanup[2] removing traceback
+# destroy traceback
+# cleanup[2] removing linecache
+# cleanup[2] removing tokenize
+# cleanup[2] removing token
+# destroy token
+# cleanup[2] removing six
+# cleanup[2] removing struct
+# cleanup[2] removing _struct
+# cleanup[2] removing statistics
+# cleanup[2] removing decimal
+# cleanup[2] removing _pydecimal
+# destroy _pydecimal
+# cleanup[2] removing numbers
+# cleanup[2] removing locale
+# cleanup[2] removing fractions
+# destroy fractions
+# cleanup[2] removing bisect
+# destroy bisect
+# cleanup[2] removing _bisect
+# cleanup[2] removing shutil
+# destroy shutil
+# cleanup[2] removing fnmatch
+# cleanup[2] removing zlib
+# cleanup[2] removing bz2
+# destroy bz2
+# cleanup[2] removing _compression
+# cleanup[2] removing _bz2
+# cleanup[2] removing lzma
+# destroy lzma
+# cleanup[2] removing _lzma
+# cleanup[2] removing pwd
+# cleanup[2] removing grp
+# cleanup[2] removing perf._metadata
+# cleanup[2] removing perf._formatter
+# cleanup[2] removing perf._bench
+# cleanup[2] removing json
+# cleanup[2] removing json.decoder
+# cleanup[2] removing json.scanner
+# cleanup[2] removing _json
+# cleanup[2] removing json.encoder
+# cleanup[2] removing perf._runner
+# cleanup[2] removing argparse
+# cleanup[2] removing copy
+# cleanup[2] removing textwrap
+# cleanup[2] removing gettext
+# destroy gettext
+# cleanup[2] removing perf._cli
+# cleanup[2] removing perf._cpu_utils
+# cleanup[2] removing perf._worker
+# cleanup[2] removing perf._master
+# cleanup[2] removing six.moves
+# cleanup[2] removing pyaes
+# cleanup[2] removing pyaes.aes
+# cleanup[2] removing pyaes.blockfeeder
+# cleanup[2] removing pyaes.util
+# cleanup[2] removing _strptime
+# cleanup[2] removing calendar
+# destroy _bz2
+# destroy _datetime
+# destroy zipimport
+# destroy pyaes
+# destroy pyaes.aes
+# destroy pyaes.util
+# destroy pyaes.blockfeeder
+# destroy _sitebuiltins
+# destroy _stat
+# destroy genericpath
+# destroy perf._utils
+# destroy perf._formatter
+# destroy perf._metadata
+# destroy perf._bench
+# destroy perf._cli
+# destroy perf._cpu_utils
+# destroy perf._worker
+# destroy perf._master
+# destroy perf._runner
+# destroy contextlib
+# destroy platform
+# destroy abc
+# destroy signal
+# destroy selectors
+# destroy threading
+# destroy _signal
+# destroy _posixsubprocess
+# destroy select
+# destroy linecache
+# destroy tokenize
+# destroy types
+# destroy six.moves.urllib
+# destroy six.moves
+# destroy six.moves.urllib_parse
+# destroy six.moves.urllib.error
+# destroy six.moves.urllib.request
+# destroy six.moves.urllib.response
+# destroy six.moves.urllib.robotparser
+# destroy _struct
+# destroy decimal
+# destroy numbers
+# destroy operator
+# destroy _bisect
+# destroy stat
+# destroy fnmatch
+# destroy posixpath
+# destroy zlib
+# destroy warnings
+# destroy _compression
+# destroy _lzma
+# destroy pwd
+# destroy grp
+# destroy json
+# destroy math
+# destroy json.decoder
+# destroy json.encoder
+# destroy json.scanner
+# destroy _json
+# destroy argparse
+# destroy errno
+# destroy six
+# destroy textwrap
+# destroy io
+# destroy os
+# destroy statistics
+# destroy perf
+# destroy subprocess
+# destroy copy
+# destroy struct
+# cleanup[3] wiping _frozen_importlib
+# destroy _frozen_importlib_external
+# cleanup[3] wiping _imp
+# cleanup[3] wiping _warnings
+# cleanup[3] wiping _thread
+# cleanup[3] wiping _weakref
+# cleanup[3] wiping _io
+# cleanup[3] wiping marshal
+# cleanup[3] wiping posix
+# cleanup[3] wiping encodings
+# destroy encodings.aliases
+# destroy encodings.utf_8
+# destroy encodings.latin_1
+# cleanup[3] wiping codecs
+# cleanup[3] wiping _codecs
+# cleanup[3] wiping _collections_abc
+# cleanup[3] wiping time
+# cleanup[3] wiping collections
+# destroy _collections_abc
+# destroy heapq
+# cleanup[3] wiping _operator
+# cleanup[3] wiping _heapq
+# cleanup[3] wiping itertools
+# cleanup[3] wiping _collections
+# destroy _collections
+# cleanup[3] wiping functools
+# cleanup[3] wiping _functools
+# cleanup[3] wiping collections.abc
+# cleanup[3] wiping datetime
+# cleanup[3] wiping re
+# destroy enum
+# destroy sre_compile
+# destroy copyreg
+# cleanup[3] wiping _sre
+# cleanup[3] wiping sre_parse
+# cleanup[3] wiping _locale
+# cleanup[3] wiping locale
+# destroy encodings
+# destroy re
+# destroy _locale
+# cleanup[3] wiping _strptime
+# destroy time
+# destroy calendar
+# cleanup[3] wiping sys
+# cleanup[3] wiping builtins
+# destroy datetime
+# destroy locale
+# destroy _functools
+# destroy _operator
+# destroy _sre
+# destroy sre_parse
+# destroy _heapq
+# destroy collections
+# destroy itertools
+# destroy functools
+# destroy collections.abc
+
