@@ -16,4 +16,4 @@ python bm_python_startup_time.py
 
 ```
 
-- NOTE: This might **not** be the perfect thing to do because in writing a custom-importer we are already using import of **some common modules** and also python by itself adds a .zip of library in `sys.path`.
+- NOTE: This might **not** bring huge benefits because in writing a custom-importer we are already using import of **some common modules** and also python by itself adds a .zip of library in `sys.path`.
