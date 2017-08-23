@@ -118,7 +118,7 @@ This was fixed by this [PR](https://github.com/python/performance/pull/27). See 
 - For `crypto_pyaes` see [here](https://bhavishyagopesh.github.io/Thirteenth-Post/)
 
 
-### New benchmarks
+### Newer benchmarks
 
 The present [performance-suite](https://github.com/python/performance) lacks benchmarks for many of the common library modules.
 
@@ -150,4 +150,5 @@ The present [performance-suite](https://github.com/python/performance) lacks ben
 2. Victor Stinner
 3. Inada Naoki
 4. James Lopeman
-5. And everyone in python community.
+5. Ezio Melloti
+6. And everyone in python community.
