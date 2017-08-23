@@ -46,13 +46,22 @@ go 	                439 ms 	        493 ms 	          1.12x slower (+12%)
 +-------------------------+----------+-------------------------------+
 ```
 
+- Import time of specific modules:
+```Text
+* encodings + encodings.utf_8 + encodings.latin_1 took 2.5ms
+* io + abc + _wakrefset took 1.2ms
+* _collections_abc took 2.1ms
+* sysconfig + _sysconfigdata took 0.9ms
+
+```
+
 - py2 uses **"read method of file object"** which is done away with in py3. It imports `io` module(the prime reason for it being slow) then `TextIOWrapper` uses encoding passed by constructor. So following were the suggested  solutions:
 
-    i) improving time for **'abc module'** areas like [these](https://github.com/python/cpython/blob/5ff7132313eb651107b179d20218dfe5d4e47f13/Lib/abc.py#L134-L143)) because `getattr(value, "__isabstractmethod__", False)` is called for *all*
+    i) improving time for **'abc module'** areas like [these](https://github.com/python/cpython/blob/5ff7132313eb651107b179d20218dfe5d4e47f13/Lib/abc.py#L134-L143) because `getattr(value, "__isabstractmethod__", False)` is called for *all*
     class attributes of ABCs (including subclass of ABCs).
     It's slow because:
 
-    * When the value is not abstractmethod, AttributeError is raised and
+    * When the value is **not abstractmethod, AttributeError** is raised and
     cleared internally.
 
     * getattr uses method cache (via PyType_Lookup), but
@@ -66,19 +75,12 @@ go 	                439 ms 	        493 ms 	          1.12x slower (+12%)
 
     iv) But if the module excluded from startup is very common ,The module will be imported while Python "application" startup anyways,So faster import time is better than avoiding importing for such common modules,Like **"functools, pathlib, os, enum, collections, re."**
 
-- Idea of parallelizing marshalling :
+- Idea of **parallelizing marshalling** :
+
 If we could somehow paralleize `marshalling` and thus **"loading"(not "executing")** than it could speedup import and henceforth **"startup-time"**.But it **won't** improve things drastically as **loading is a small fraction of execution time**
 Eg:-for complex module like "typings" -> "29x" greater but for smaller ones like "ABC"-> "4x" greater.
 
 - NOTE: For comparison relating to `C` portion of code see [here](https://bhavishyagopesh.github.io/Fourteenth-Post/)
-- Import time of specific modules:
-```Text
-* encodings + encodings.utf_8 + encodings.latin_1 took 2.5ms
-* io + abc + _wakrefset took 1.2ms
-* _collections_abc took 2.1ms
-* sysconfig + _sysconfigdata took 0.9ms
-
-```
 
 - Next I tried writing a `C version` of `WeakSet` ([here](https://github.com/bhavishyagopesh/gsoc_2017/blob/master/python_startup_time/weakrefsetmodule.c)) but it wasn't approved by Raymond Hettinger as it would have been difficult to maintain.
 
@@ -91,9 +93,9 @@ Eg:-for complex module like "typings" -> "29x" greater but for smaller ones like
 I wrote a `python-script` to create a `zip-archive` from common modules and ran the different versions of python inside `docker` containers.See [this](https://bhavishyagopesh.github.io/Seventeenth-Post/) blog entry for more details. But it was realised that this might **not** reap huge benefits **because in writing a custom-importer we are already using import of some common modules and also python by itself adds a .zip of library in sys.path.**
 
 - **Lazy- Loading**
-I used a custom lazy-loader/importer for import of modules during “startup”, so as to prevent import of module which are not necessary and explore the possibility of possible decrease in startup time.[Here's](https://bhavishyagopesh.github.io/Seventh-Post/) blog entry explaining the implementation and the code for `custom lazy-loader/importer.`But lazy-loading didn't decreased the startup-time and rather increased it slightly.
+I used a custom **lazy-loader/importer** for import of modules during “startup”, so as to prevent import of module which are not necessary and explore the possibility of possible decrease in startup time.[Here's](https://bhavishyagopesh.github.io/Seventh-Post/) blog entry explaining the implementation and the code for `custom lazy-loader/importer.`But lazy-loading didn't decreased the startup-time and rather increased it slightly.
 
-- Also there was a suggestion to write `cython modules` for common modules.
+- Also there was a suggestion to write `cython modules` for common modules.But it wasn't pursued due to lack of time.
 
 2. Optimizing "logging" benchmark
 py3 showed *regression* on logging benchmark,
@@ -118,21 +120,30 @@ This was fixed by this [PR](https://github.com/python/performance/pull/27). See 
 
 ### New benchmarks
 
-The present [performance-suite](https://github.com/python/performance) lacks benchmark for many of the common library modules.
+The present [performance-suite](https://github.com/python/performance) lacks benchmarks for many of the common library modules.
 
-1. zlib
+1. **zlib**
 
-This benchmark tries to measure basic `Compression` and `Decompression` using `zlib`.**This showed significant regression as length of binary string increased.** The code and the details to reproduce are in [this](https://bhavishyagopesh.github.io/Eighteenth-Post/) blog entry.
+    This benchmark tries to measure basic `Compression` and `Decompression` using `zlib`.**This showed significant regression as length of binary string increased.** The code and the details to reproduce are in [this](https://bhavishyagopesh.github.io/Eighteenth-Post/) blog entry.
 
-2. math
+2. **math**
 
-This benchmark measures basic *math operations*. And here here `py2` comes out **faster**. [Here's](https://bhavishyagopesh.github.io/Nineteenth-Post/) blog entry for code and statistics.
+    This benchmark measures basic *math operations*. And here here `py2` comes out **faster**. [Here's](https://bhavishyagopesh.github.io/Nineteenth-Post/) blog entry for code and statistics.
 
-3. smtplib
-The smtplib module defines an SMTP client session object that can be used to send mail to any Internet machine with an SMTP or ESMTP listener daemon.This benchmark measure that performance. [Here's](https://bhavishyagopesh.github.io/Nineteenth-Post/) the entry for code.Again **py3 regresses.**
+3. **smtplib**:
 
-4. Concurrency benchmark and concurency primitives
-There are primarily two concurency primitives offered by `python` that are `threading` and `multiprocessing`.This benchmark tries to measure a same `number-crunching` task when done concurrently by "threading" and "multiprocessing" separately. [Here's](https://bhavishyagopesh.github.io/Twentieth-Post/) the  benchmark that measures concurency and also the cost of creating `threading-objects`(*It is not of much use as-such*).
+    The smtplib module defines an SMTP client session object that can be used to send mail to any Internet machine with an SMTP or ESMTP listener daemon.This benchmark measure that performance. [Here's](https://bhavishyagopesh.github.io/Nineteenth-Post/) the entry for code.Again **py3 regresses.**
+
+4. **Concurrency benchmark and concurency primitives**:
+
+    There are primarily two concurency primitives offered by `python` that are `threading` and `multiprocessing`.This benchmark tries to measure a same `number-crunching` task when done concurrently by "threading" and "multiprocessing" separately. [Here's](https://bhavishyagopesh.github.io/Twentieth-Post/) the  benchmark that measures concurency and also the cost of creating `threading-objects`(*It is not of much use as-such*).
+
+
+## Future-Work:
+
+- Implementation of `cython`  modules.
+- Improving the portion of `ABC's` code as pointed above
+- Accumlating use-cases for newer benchmarks.
 
 ## Acknowledgements:
 1. @Botanic
