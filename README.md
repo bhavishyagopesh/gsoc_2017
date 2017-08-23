@@ -36,6 +36,7 @@ go 	                439 ms 	        493 ms 	          1.12x slower (+12%)
 ```
 
 1. **Startup-time**
+
 **Startup-time** is the most regressed benchmark.
 
 ```bash
@@ -136,7 +137,7 @@ The present [performance-suite](https://github.com/python/performance) lacks ben
 
 4. **Concurrency benchmark and concurency primitives**:
 
-    There are primarily two concurency primitives offered by `python` that are `threading` and `multiprocessing`.This benchmark tries to measure a same `number-crunching` task when done concurrently by "threading" and "multiprocessing" separately. [Here's](https://bhavishyagopesh.github.io/Twentieth-Post/) the  benchmark that measures concurency and also the cost of creating `threading-objects`(*It is not of much use as-such*).
+    There are primarily two concurency primitives offered by `python` that are `threading` and `multiprocessing`.This benchmark tries to measure a same `number-crunching` task when done concurrently by "threading" and "multiprocessing" separately. [Here's](https://bhavishyagopesh.github.io/Twentieth-Post/) the  benchmark that measures concurency and also the cost of creating `threading-objects`(*It is not of much use as such*).
 
 
 ## Future-Work:
