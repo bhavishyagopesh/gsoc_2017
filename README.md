@@ -1,4 +1,4 @@
-# Google Summer Of Code '17 [PSF](https://www.python.org/psf/)
+# Google Summer Of Code '17 ([PSF](https://www.python.org/psf/))
 
 ## Goals
 - To identify set of regressed benchmarks in the [performance suite](https://github.com/python/performance).
