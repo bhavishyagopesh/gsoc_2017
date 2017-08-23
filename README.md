@@ -27,12 +27,12 @@ Regressed benchmarks:
 Benchmark 	            py2 	    py3 	       Times-slow
 python_startup_no_site 	9.42 ms 	26.0 ms 	2.76x slower (+176%)
 python_startup 	        19.2 ms 	42.3 ms 	2.21x slower (+121%)
-spectral_norm 	        194 ms 	      259 ms 	    2.20x slower (+120%)
+spectral_norm 	        194 ms 	       259 ms 	    2.20x slower (+120%)
 sqlite_synth 	        6.70 us 	8.49 us 	1.27x slower (+27%)
-crypto_pyaes 	        158 ms 	      199 ms 	    1.26x slower (+26%)
-xml_etree_parse 	 193 ms 	  242 ms 	    1.25x slower (+25%)
-xml_etree_iterparse 	154 ms 	      179 ms 	    1.16x slower (+16%)
-go 	                 439 ms 	  493 ms 	    1.12x slower (+12%)
+crypto_pyaes 	        158 ms 	       199 ms 	    1.26x slower (+26%)
+xml_etree_parse 	193 ms 	  242 ms 	    1.25x slower (+25%)
+xml_etree_iterparse 	154 ms 	       179 ms 	    1.16x slower (+16%)
+go 	                439 ms 	  493 ms 	    1.12x slower (+12%)
 ```
 
 1. **Startup-time**
