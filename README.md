@@ -48,23 +48,23 @@ go 	                439 ms 	  493 ms 	    1.12x slower (+12%)
 
 - py2 uses **"read method of file object"** which is done away with in py3. It imports `io` module(the prime reason for it being slow) then `TextIOWrapper` uses encoding passed by constructor. So following were the suggested  solutions:
 
-i)improving time for **'abc module'** areas like [these](https://github.com/python/cpython/blob/5ff7132313eb651107b179d20218dfe5d4e47f13/Lib/abc.py#L134-L143)) because `getattr(value, "__isabstractmethod__", False)` is called for *all*
-class attributes of ABCs (including subclass of ABCs).
-It's slow because:
+    i) improving time for **'abc module'** areas like [these](https://github.com/python/cpython/blob/5ff7132313eb651107b179d20218dfe5d4e47f13/Lib/abc.py#L134-L143)) because `getattr(value, "__isabstractmethod__", False)` is called for *all*
+    class attributes of ABCs (including subclass of ABCs).
+    It's slow because:
 
-* When the value is not abstractmethod, AttributeError is raised and
-cleared internally.
+    * When the value is not abstractmethod, AttributeError is raised and
+    cleared internally.
 
-* getattr uses method cache (via PyType_Lookup), but
-`__isabstractmethod__` is mostly in
-  instance __dict__.  So checking method cache is mostly useless efforts.
+    * getattr uses method cache (via PyType_Lookup), but
+    `__isabstractmethod__` is mostly in
+      instance __dict__.  So checking method cache is mostly useless efforts.
 
 
-ii) avoiding import of whole **sysconfig** and only of the variables required.This is fixed in [this](http://bugs.python.org/issue29585) "bpo" thread.
+    ii) avoiding import of whole **sysconfig** and only of the variables required.This is fixed in [this](http://bugs.python.org/issue29585) "bpo" thread.
 
-iii) avoiding the import of uncommon modules.
+    iii) avoiding the import of uncommon modules.
 
-iv) But if the module excluded from startup is very common ,The module will be imported while Python "application" startup anyways,So faster import time is better than avoiding importing for such common modules,Like **"functools, pathlib, os, enum, collections, re."**
+    iv) But if the module excluded from startup is very common ,The module will be imported while Python "application" startup anyways,So faster import time is better than avoiding importing for such common modules,Like **"functools, pathlib, os, enum, collections, re."**
 
 - Idea of parallelizing marshalling :
 If we could somehow paralleize `marshalling` and thus **"loading"(not "executing")** than it could speedup import and henceforth **"startup-time"**.But it **won't** improve things drastically as **loading is a small fraction of execution time**
@@ -84,9 +84,9 @@ Eg:-for complex module like "typings" -> "29x" greater but for smaller ones like
 
 - On Nick Coughlan's Suggestion I tried if we could:
 
- - Push "commonly-imported" modules to a separate zip archive
- - Seed `sys.modules` with contents of that archive
- - freeze the import of those modules
+     - Push "commonly-imported" modules to a separate zip archive
+     - Seed `sys.modules` with contents of that archive
+     - freeze the import of those modules
 
 I wrote a `python-script` to create a `zip-archive` from common modules and ran the different versions of python inside `docker` containers.See [this](https://bhavishyagopesh.github.io/Seventeenth-Post/) blog entry for more details. But it was realised that this might **not** reap huge benefits **because in writing a custom-importer we are already using import of some common modules and also python by itself adds a .zip of library in sys.path.**
 
