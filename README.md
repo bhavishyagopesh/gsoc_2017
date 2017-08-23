@@ -151,4 +151,4 @@ The present [performance-suite](https://github.com/python/performance) lacks ben
 3. Inada Naoki
 4. James Lopeman
 5. Ezio Melloti
-6. And everyone in python community.
+6. And everyone in python community :)
