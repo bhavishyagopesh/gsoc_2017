@@ -150,7 +150,7 @@ The present [performance-suite](https://github.com/python/performance) lacks ben
 - Accumlating use-cases for newer benchmarks.
 
 ## Acknowledgements:
-1. @Botanic
+1. @Botanic(Matthew Lagoe)
 2. Victor Stinner
 3. Inada Naoki
 4. James Lopeman
