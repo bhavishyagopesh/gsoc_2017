@@ -94,7 +94,7 @@ Eg:-for complex module like "typings" -> "29x" greater but for smaller ones like
 I wrote a `python-script` to create a `zip-archive` from common modules and ran the different versions of python inside `docker` containers.See [this](https://bhavishyagopesh.github.io/Seventeenth-Post/) blog entry for more details. But it was realised that this might **not** reap huge benefits **because in writing a custom-importer we are already using import of some common modules and also python by itself adds a .zip of library in sys.path.**
 
 - **Lazy- Loading**
-I used a custom **lazy-loader/importer** for import of modules during “startup”, so as to prevent import of module which are not necessary and explore the possibility of possible decrease in startup time.[Here's](https://bhavishyagopesh.github.io/Seventh-Post/) blog entry explaining the implementation and the code for `custom lazy-loader/importer.`But lazy-loading didn't decreased the startup-time and rather increased it slightly.
+I used a custom **lazy-loader/importer** for import of modules during “startup”, so as to prevent import of module which are not necessary and explore the possibility of possible decrease in startup time.[Here's](https://bhavishyagopesh.github.io/Seventh-Post/) blog entry explaining the implementation and the code for `custom lazy-loader/importer.`But lazy-loading didn't decreased the startup-time and rather increased it slightly(*Mostly because the `lazy-loader` already does a import of common modules.*).
 
 - Also there was a suggestion to write `cython modules` for common modules.But it wasn't pursued due to lack of time.
 
@@ -117,6 +117,9 @@ This was fixed by this [PR](https://github.com/python/performance/pull/27). See 
 - `Pickle/Unpickle` was realised of lower practical importance.[here](https://bhavishyagopesh.github.io/Eleventh-Post/)
 - For `sqlite_synth` see [here](https://bhavishyagopesh.github.io/Twelfth-Post/)
 - For `crypto_pyaes` see [here](https://bhavishyagopesh.github.io/Thirteenth-Post/)
+
+
+4. There was some work on [`FAT-python`](https://github.com/haypo/fatoptimizer) but it wasn't pursued as it **didn't passed the test-suite and generated incorrect byte codes.** PRs merged [#13](https://github.com/haypo/fatoptimizer/pull/13) and [#12](https://github.com/haypo/fatoptimizer/pull/12).
 
 
 ### Newer benchmarks
