@@ -7,7 +7,7 @@
 - To come-up with new benchmarks for modules that do not have benchmarks yet.
 
 
-### **NOTE: For parallel reports on advances see [here](bhavishyagopesh.github.io)**
+### **NOTE: For parallel reports on advances see [here](https://bhavishyagopesh.github.io)**
 ### [This](https://github.com/bhavishyagopesh/gsoc_2017) repository contains source files of the project but it is suggested to use the blog for navigation.
 
 ## Tools Used
